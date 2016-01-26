@@ -61,3 +61,42 @@
 1453840591 c:\miniclip\game\game\include\colours\blackcolour.h
 	"Colour.h"
 
+1453849052 source:c:\miniclip\game\miniclip\src\matrixcol.cpp
+	"MatrixCol.h"
+
+1453848960 c:\miniclip\game\miniclip\include\matrixcol.h
+	<cstdlib>
+	<ctime>
+	"MatrixElement.h"
+	"Colour.h"
+	"RedColour.h"
+	"BlueColour.h"
+	"GreenColour.h"
+	"GreyColour.h"
+	"YellowColour.h"
+	"BlackColour.h"
+
+1453843097 c:\miniclip\game\miniclip\include\matrixelement.h
+	"colours/Colour.h"
+
+1453841331 c:\miniclip\game\miniclip\include\colours\colour.h
+	<iostream>
+
+1453839712 c:\miniclip\game\miniclip\include\colours\redcolour.h
+	"Colour.h"
+
+1453839816 c:\miniclip\game\miniclip\include\colours\bluecolour.h
+	"Colour.h"
+
+1453840611 c:\miniclip\game\miniclip\include\colours\greencolour.h
+	"Colour.h"
+
+1453840617 c:\miniclip\game\miniclip\include\colours\greycolour.h
+	"Colour.h"
+
+1453840626 c:\miniclip\game\miniclip\include\colours\yellowcolour.h
+	"Colour.h"
+
+1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
+	"Colour.h"
+
