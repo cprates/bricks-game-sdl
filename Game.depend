@@ -1,0 +1,63 @@
+# depslib dependency file v1.0
+1453850027 source:c:\miniclip\game\game\src\game.cpp
+	<string>
+	<iostream>
+	"GameMatrix.h"
+
+1453769020 source:c:\miniclip\game\game\src\matrixelement.cpp
+	"MatrixElement.h"
+
+1453843097 c:\miniclip\game\game\include\matrixelement.h
+	"colours/Colour.h"
+
+1453849778 source:c:\miniclip\game\game\src\gamematrix.cpp
+	"GameMatrix.h"
+
+1453849133 c:\miniclip\game\game\include\gamematrix.h
+	<vector>
+	"MatrixElement.h"
+	"MatrixCol.h"
+	"Colour.h"
+
+1453770998 c:\miniclip\game\game\include\color.h
+	<iostream>
+
+1453848960 c:\miniclip\game\game\include\matrixcol.h
+	<cstdlib>
+	<ctime>
+	"MatrixElement.h"
+	"Colour.h"
+	"RedColour.h"
+	"BlueColour.h"
+	"GreenColour.h"
+	"GreyColour.h"
+	"YellowColour.h"
+	"BlackColour.h"
+
+1453849052 source:c:\miniclip\game\game\src\matrixcol.cpp
+	"MatrixCol.h"
+
+1453838017 c:\miniclip\game\game\include\colour.h
+	<iostream>
+
+1453841331 c:\miniclip\game\game\include\colours\colour.h
+	<iostream>
+
+1453839712 c:\miniclip\game\game\include\colours\redcolour.h
+	"Colour.h"
+
+1453839816 c:\miniclip\game\game\include\colours\bluecolour.h
+	"Colour.h"
+
+1453840611 c:\miniclip\game\game\include\colours\greencolour.h
+	"Colour.h"
+
+1453840617 c:\miniclip\game\game\include\colours\greycolour.h
+	"Colour.h"
+
+1453840626 c:\miniclip\game\game\include\colours\yellowcolour.h
+	"Colour.h"
+
+1453840591 c:\miniclip\game\game\include\colours\blackcolour.h
+	"Colour.h"
+
