@@ -56,6 +56,7 @@
 		<Unit filename="include/colours/YellowColour.h" />
 		<Unit filename="include/graphics/Engine.h" />
 		<Unit filename="include/graphics/Entity.h" />
+		<Unit filename="include/graphics/Sprite.h" />
 		<Unit filename="include/graphics/scene/GameScene.h" />
 		<Unit filename="include/graphics/scene/Scene.h" />
 		<Unit filename="src/Game.cpp" />
@@ -63,6 +64,7 @@
 		<Unit filename="src/MatrixCol.cpp" />
 		<Unit filename="src/graphics/Engine.cpp" />
 		<Unit filename="src/graphics/Entity.cpp" />
+		<Unit filename="src/graphics/Sprite.cpp" />
 		<Unit filename="src/graphics/scene/GameScene.cpp" />
 		<Unit filename="src/graphics/scene/Scene.cpp" />
 		<Extensions>

@@ -103,6 +103,10 @@ void Engine::setScene(Scene* scene) {
     this->scene = scene;
 }
 
+SDL_Renderer* Engine::getRenderer() {
+    return this->renderer;
+}
+
 void Engine::handleIO(SDL_Event* ev) {
     while( SDL_PollEvent(ev) != 0 ) {
         switch(ev->type) {

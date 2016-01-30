@@ -79,7 +79,7 @@
 1453843097 c:\miniclip\game\miniclip\include\matrixelement.h
 	"colours/Colour.h"
 
-1453841331 c:\miniclip\game\miniclip\include\colours\colour.h
+1454112313 c:\miniclip\game\miniclip\include\colours\colour.h
 	<iostream>
 
 1453839712 c:\miniclip\game\miniclip\include\colours\redcolour.h
@@ -100,12 +100,13 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454112057 source:c:\miniclip\game\miniclip\src\game.cpp
+1454195915 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
 	"Engine.h"
 	"GameScene.h"
+	"Sprite.h"
 
 1453849133 c:\miniclip\game\miniclip\include\gamematrix.h
 	<vector>
@@ -116,10 +117,10 @@
 1454018154 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454110481 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454192005 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
 
-1454109308 c:\miniclip\game\miniclip\include\graphics\engine.h
+1454191895 c:\miniclip\game\miniclip\include\graphics\engine.h
 	<iostream>
 	<string>
 	<SDL.h>
@@ -458,7 +459,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1454112266 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
+1454192296 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -470,11 +471,21 @@
 1454111381 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Scene.h"
 
-1454112198 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
+1454192286 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
-1454111508 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
+1454194290 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
 	"Entity.h"
 
-1454111508 c:\miniclip\game\miniclip\include\graphics\entity.h
+1454193816 c:\miniclip\game\miniclip\include\graphics\entity.h
+	<iostream>
+	<SDL.h>
+
+1454195982 source:c:\miniclip\game\miniclip\src\graphics\sprite.cpp
+	"Sprite.h"
+
+1454195886 c:\miniclip\game\miniclip\include\graphics\sprite.h
+	<SDL.h>
+	<SDL_image.h>
+	"Entity.h"
 

@@ -5,6 +5,7 @@
 #include "GameMatrix.h"
 #include "Engine.h"
 #include "GameScene.h"
+#include "Sprite.h"
 
 using namespace std;
 
@@ -17,6 +18,20 @@ int main( int argc, char* args[] ) {
     GameScene scene;
     if(!engine.init()) return -1;
 
+    Sprite et1(0, 0, 320, 240);
+    Sprite* et2 = new Sprite(100, 100, 200, 200, true);
+    Sprite* et3 = new Sprite(350, 200, 120, 100, true);
+
+    et3->setAngle(45);
+
+    et2->create("sprite.bmp", engine.getRenderer());
+    et3->create("sprite.bmp", engine.getRenderer());
+
+    scene.attachChild(&et1);
+    scene.attachChild(et2);
+    scene.attachChild(et3);
+
+    scene.detatchEntity(&et1);
 
     engine.setScene(&scene);
     engine.start();

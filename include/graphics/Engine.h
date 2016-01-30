@@ -23,6 +23,7 @@ class Engine
         bool init();
         void start();
         void setScene(Scene *scene);
+        SDL_Renderer* getRenderer();
 
     private:
         SDL_Window* window;

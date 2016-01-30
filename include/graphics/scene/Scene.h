@@ -12,17 +12,19 @@ using namespace std;
 class Scene
 {
     public:
+        static const unsigned MAX_CHILDS = 500;
+
         Scene();
         virtual ~Scene();
         virtual void onDraw(SDL_Renderer* renderer);
-        virtual void onUpdate(const unsigned elapsedTime);
-        void onMouseEvent(SDL_Event* ev);
+        virtual void onUpdate(unsigned elapsedTime);
+        void onMouseEvent(SDL_Event* ev); ///////////////////////////////////////////////
         bool attachChild(Entity* entity);
         bool detatchEntity(Entity* entity);
 
     private:
         vector<Entity*> childs;
-        int entityIDSeed;
+        unsigned entityIDSeed;
 
 };
 

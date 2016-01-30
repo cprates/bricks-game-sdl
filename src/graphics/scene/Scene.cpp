@@ -1,8 +1,7 @@
 #include "Scene.h"
 
 Scene::Scene():
-    entityIDSeed(0)
-
+    entityIDSeed(1)
 {
 
 }
@@ -10,15 +9,54 @@ Scene::Scene():
 Scene::~Scene()
 {
 
+    // remove all the wild Entitys
+    vector<Entity*>::iterator it = childs.begin();
+    for(; it != childs.end(); it++ ) {
+        if((*it)->isWild()) {
+            delete *it;
+        }
+    }
 }
 
 
 void Scene::onDraw(SDL_Renderer* renderer) {
-
+    vector<Entity*>::iterator it = childs.begin();
+    for(; it != childs.end(); it++ ) {
+        if((*it)->isVisible()) {
+            (*it)->onDraw(renderer);
+        }
+    }
 }
 
-void Scene::onUpdate(const unsigned elapsedTime) {
+void Scene::onUpdate(unsigned elapsedTime) {
+    vector<Entity*>::iterator it = childs.begin();
+    for(; it != childs.end(); it++ ) {
+        (*it)->onUpdate(elapsedTime);
+    }
+}
 
+bool Scene::attachChild(Entity* entity) {
+    if(this->childs.size() < Scene::MAX_CHILDS) {
+        entity->setID(this->entityIDSeed);
+        this->entityIDSeed++;
+        this->childs.push_back(entity);
+        return true;
+    }
+    return false;
+}
+
+bool Scene::detatchEntity(Entity* entity) {
+    vector<Entity*>::iterator it = this->childs.begin();
+    for(; it != this->childs.end() && (*it)->getID() != entity->getID() ; it++) {}
+    if(it != this->childs.end()) {
+        if((*it)->isWild()) {
+            delete *it;
+        }
+        this->childs.erase(it);
+        return true;
+    }
+
+    return false;
 }
 
 void Scene::onMouseEvent(SDL_Event* ev) {
