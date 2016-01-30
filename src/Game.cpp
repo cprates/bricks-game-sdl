@@ -1,11 +1,26 @@
 
 #include <string>
 #include <iostream>
+
 #include "GameMatrix.h"
+#include "Engine.h"
+#include "GameScene.h"
 
 using namespace std;
 
-int main() {
+const int SCREEN_WIDTH = 600;
+const int SCREEN_HEIGHT = 400;
+const string GAME_TITLE = "Cube Crush";
+
+int main( int argc, char* args[] ) {
+    Engine engine (SCREEN_WIDTH, SCREEN_HEIGHT, GAME_TITLE);
+    GameScene scene;
+    if(!engine.init()) return -1;
+
+
+    engine.setScene(&scene);
+    engine.start();
+
     GameMatrix *gm = new GameMatrix(0, 0, 10, 10);
 
     gm->genColumn(6);
@@ -20,4 +35,6 @@ int main() {
     cout << endl << endl;
     gm->print();
     delete gm;
+
+    return 0;
 }

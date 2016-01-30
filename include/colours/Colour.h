@@ -14,7 +14,7 @@ class Colour
 
         bool isEqual(Colour *c) {
             if(c)
-                return (r==c->r && g==c->g && b==c->b);
+                return (r == c->r && g == c->g && b == c->b);
             else
                 return false;
         }

@@ -44,6 +44,7 @@ void GameMatrix::getAdjacentTwins(int sourfaceX, int sourfaceY, vector<MatrixEle
     return this->getAdjacentTwins(col, row, c, adjacentTwins);
 }
 
+// TODO: dont check origin
 void GameMatrix::getAdjacentTwins(int col, int row, Colour *colour, vector<MatrixElement*>* adjacentTwins) {
     if(col >= this->width || col < 0) return;
     if(row >= this->matrix[col]->getHeight() || row < 0) return;

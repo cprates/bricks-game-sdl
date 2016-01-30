@@ -15,6 +15,8 @@
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="include/colours" />
+					<Add directory="include/graphics" />
+					<Add directory="include/graphics/scene" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +28,8 @@
 					<Add option="-O2" />
 					<Add directory="include" />
 					<Add directory="include/colours" />
+					<Add directory="include/graphics" />
+					<Add directory="include/graphics/scene" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,7 +38,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../../i686-w64-mingw32/include/SDL2" />
 		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+			<Add directory="../../i686-w64-mingw32/lib" />
+		</Linker>
 		<Unit filename="include/GameMatrix.h" />
 		<Unit filename="include/MatrixCol.h" />
 		<Unit filename="include/MatrixElement.h" />
@@ -45,9 +54,17 @@
 		<Unit filename="include/colours/GreyColour.h" />
 		<Unit filename="include/colours/RedColour.h" />
 		<Unit filename="include/colours/YellowColour.h" />
+		<Unit filename="include/graphics/Engine.h" />
+		<Unit filename="include/graphics/Entity.h" />
+		<Unit filename="include/graphics/scene/GameScene.h" />
+		<Unit filename="include/graphics/scene/Scene.h" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameMatrix.cpp" />
 		<Unit filename="src/MatrixCol.cpp" />
+		<Unit filename="src/graphics/Engine.cpp" />
+		<Unit filename="src/graphics/Entity.cpp" />
+		<Unit filename="src/graphics/scene/GameScene.cpp" />
+		<Unit filename="src/graphics/scene/Scene.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
