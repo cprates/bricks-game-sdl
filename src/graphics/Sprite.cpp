@@ -7,8 +7,7 @@ Sprite::Sprite(int x, int y, int width, int height, bool wild) : Entity::Entity(
     this->wild = wild;
 }
 
-Sprite::~Sprite()
-{
+Sprite::~Sprite() {
 	if(texture != NULL) {
 		SDL_DestroyTexture( texture );
 	}
@@ -25,15 +24,15 @@ void Sprite::onUpdate(const unsigned elapsedTime) {
 
 }
 
-bool Sprite::create(const string imgPath, SDL_Renderer* renderer)
-{
+bool Sprite::create(const string imgPath, SDL_Renderer* renderer) {
 	SDL_Surface* imgSurface = IMG_Load(imgPath.c_str());
 	if(imgSurface == NULL){
 		return false;
 	}
+    SDL_SetColorKey( imgSurface, SDL_TRUE, SDL_MapRGB( imgSurface->format, 0xFF, 0xFF, 0xFF ) );
 
-    texture = SDL_CreateTextureFromSurface( renderer, imgSurface );
-    if(texture == NULL){
+    this->texture = SDL_CreateTextureFromSurface( renderer, imgSurface );
+    if(this->texture == NULL){
         return false;
     }
 
@@ -51,5 +50,7 @@ short Sprite::getAngle() {
 }
 
 void Sprite::setAlpha(short alpha) {
-	SDL_SetTextureAlphaMod(texture, alpha);
+    if(this->texture != NULL){
+        SDL_SetTextureAlphaMod(this->texture, alpha);
+    }
 }

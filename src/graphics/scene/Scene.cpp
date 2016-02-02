@@ -1,7 +1,8 @@
 #include "Scene.h"
 
 Scene::Scene():
-    entityIDSeed(1)
+    entityIDSeed(1),
+    lastClicked(NULL)
 {
 
 }
@@ -59,7 +60,52 @@ bool Scene::detatchEntity(Entity* entity) {
     return false;
 }
 
-void Scene::onMouseEvent(SDL_Event* ev) {
-    if(ev->button.button == SDL_BUTTON_LEFT && ev->type == SDL_MOUSEBUTTONUP)
-        std::cout << "Event: x: " << ev->button.x << " y: " << ev->button.y << std::endl;
+Entity* Scene::searchTarget(const int x, const int y) {
+    vector<Entity*>::iterator it = this->childs.begin();
+    for(; it != this->childs.end() && !overIt(x, y, (*it)->getRect()) ; it++) {}
+    if(it != this->childs.end()) {
+        return *it;
+    }
+    return NULL;
+}
+
+/**
+**  Only works for AA Box's
+**/
+bool Scene::overIt(const int x, const int y, SDL_Rect* rect) {
+    bool axiX = x >= rect->x && x <= (rect->x + rect->w);
+    bool axiY = y >= rect->y && y <= (rect->y + rect->h);
+    return axiX && axiY;
+}
+
+
+void Scene::onMouseMove(SDL_Event* ev) {
+    Entity* target = searchTarget(ev->button.x, ev->button.y);
+    if(target != NULL) {
+        target->onMouseOver(ev);
+    }
+}
+void Scene::onMouseButton(SDL_Event* ev) {
+    Entity* target = searchTarget(ev->button.x, ev->button.y);
+    if(target != NULL) {
+        notifyOnClick(target, ev);
+    }
+}
+
+void Scene::notifyOnClick(Entity* target, SDL_Event* ev) {
+    if(ev->button.button == SDL_BUTTON_LEFT) {
+        if(ev->type == SDL_MOUSEBUTTONUP) {
+            // is it a click event?
+            if(target == this->lastClicked) {
+                target->onClick(ev);
+            }
+            // clean the state
+            this->lastClicked = NULL;
+        }
+        else if(ev->type == SDL_MOUSEBUTTONDOWN) {
+            // may be a click event...
+            this->lastClicked = target;
+        }
+    }
+
 }

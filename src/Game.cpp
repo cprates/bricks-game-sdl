@@ -18,6 +18,8 @@ int main( int argc, char* args[] ) {
     GameScene scene;
     if(!engine.init()) return -1;
 
+    engine.setIOListener(&scene);
+
     Sprite et1(0, 0, 320, 240);
     Sprite* et2 = new Sprite(100, 100, 200, 200, true);
     Sprite* et3 = new Sprite(350, 200, 120, 100, true);
@@ -26,6 +28,7 @@ int main( int argc, char* args[] ) {
 
     et2->create("sprite.bmp", engine.getRenderer());
     et3->create("sprite.bmp", engine.getRenderer());
+    et3->setAlpha(150);
 
     scene.attachChild(&et1);
     scene.attachChild(et2);
@@ -35,7 +38,6 @@ int main( int argc, char* args[] ) {
 
     engine.setScene(&scene);
     engine.start();
-
     GameMatrix *gm = new GameMatrix(0, 0, 10, 10);
 
     gm->genColumn(6);

@@ -41,3 +41,15 @@ void Entity::setID(const unsigned id) {
 unsigned Entity::getID() {
     return this->id;
 }
+
+SDL_Rect* Entity::getRect() {
+    return &this->rect;
+}
+
+void Entity::onClick(SDL_Event* ev) {
+    cout << "Clicked!!: " << this->id << endl;
+}
+
+void Entity::onMouseOver(SDL_Event* ev) {
+    cout << "MouseOver!!: " << this->id << endl;
+}

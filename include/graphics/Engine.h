@@ -7,6 +7,7 @@
 #include <SDL_image.h>
 
 #include "Scene.h"
+#include "IOListener.h"
 
 using namespace std;
 
@@ -22,13 +23,15 @@ class Engine
         virtual ~Engine();
         bool init();
         void start();
-        void setScene(Scene *scene);
+        void setScene(Scene* scene);
         SDL_Renderer* getRenderer();
+        void setIOListener(IOListener* listener);
 
     private:
         SDL_Window* window;
         SDL_Renderer* renderer;
         Scene* scene;
+        IOListener* ioListener;
         bool shutdown;
         int wWidth, wHeight;
         string wTitle;
@@ -37,7 +40,6 @@ class Engine
         unsigned int ticksPerFrame;
 
         void handleIO(SDL_Event* ev);
-        void onMouseEvent(SDL_Event* ev);
 
 };
 

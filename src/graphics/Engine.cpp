@@ -4,6 +4,7 @@ Engine::Engine(const int windowWidth, const int windowHeight, const string windo
     window(NULL),
     renderer(NULL),
     scene(NULL),
+    ioListener(NULL),
     shutdown(false),
     wWidth(windowWidth),
     wHeight(windowHeight),
@@ -76,9 +77,6 @@ void Engine::start() {
     while(!shutdown) {
         this->handleIO(&e);
 
-        // TODO: Ver se é mesmo preciso aqui este DrawColor....
-        //SDL_SetRenderDrawColor( this->renderer, RENDERER_BG_COLOUR_RED, RENDERER_BG_COLOUR_GREEN,
-        //                       RENDERER_BG_COLOUR_BLUE, RENDERER_BG_COLOUR_ALPHA );
         SDL_RenderClear( this->renderer );
         // Update and Draw Scene
         if(this->scene != NULL) {
@@ -107,6 +105,10 @@ SDL_Renderer* Engine::getRenderer() {
     return this->renderer;
 }
 
+void Engine::setIOListener(IOListener* listener) {
+    this->ioListener = listener;
+}
+
 void Engine::handleIO(SDL_Event* ev) {
     while( SDL_PollEvent(ev) != 0 ) {
         switch(ev->type) {
@@ -115,15 +117,15 @@ void Engine::handleIO(SDL_Event* ev) {
                 break;
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:
+                if(this->ioListener != NULL) {
+                    this->ioListener->onMouseButton(ev);
+                }
+                break;
             case SDL_MOUSEMOTION:
-                this->onMouseEvent(ev);
+                if(this->ioListener != NULL) {
+                    this->ioListener->onMouseMove(ev);
+                }
                 break;
         }
-    }
-}
-
-void Engine::onMouseEvent(SDL_Event* ev) {
-    if(this->scene != NULL) {
-        this->scene->onMouseEvent(ev);
     }
 }
