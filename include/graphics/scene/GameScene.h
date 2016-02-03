@@ -20,6 +20,7 @@ class GameScene : public Scene
 
         GameScene(Level* level, SDL_Renderer* renderer);
         virtual ~GameScene();
+        void gridClickEventCallback(int x, int y);
 
     private:
         GameMatrix logicMatrix;

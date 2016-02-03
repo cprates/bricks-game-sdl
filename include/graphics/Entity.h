@@ -21,8 +21,8 @@ class Entity
         bool isWild();
         void setWild(bool flag);
         SDL_Rect* getRect();
-        void onClick(SDL_Event* ev);
-        void onMouseOver(SDL_Event* ev);
+        virtual void onClick(SDL_Event* ev);
+        virtual void onMouseOver(SDL_Event* ev);
 
     protected:
         bool visible;

@@ -21,46 +21,9 @@ int main( int argc, char* args[] ) {
 
     FirstLevel firstLevel;
     GameScene scene(&firstLevel, engine.getRenderer());
-
     engine.setIOListener(&scene);
-    /*
-    Sprite et1(0, 0, 320, 240);
-    Sprite* et2 = new Sprite(100, 100, 200, 200, true);
-    Sprite* et3 = new Sprite(350, 200, 120, 100, true);
-
-    et3->setAngle(45);
-
-    et2->create("sprite.bmp", engine.getRenderer());
-    et3->create("sprite.bmp", engine.getRenderer());
-    et3->setAlpha(150);
-
-    scene.attachChild(&et1);
-    scene.attachChild(et2);
-    scene.attachChild(et3);
-
-    scene.detatchEntity(&et1);*/
-
     engine.setScene(&scene);
     engine.start();
-
-
-
-    /*
-    GameMatrix *gm = new GameMatrix(0, 0, 10, 10);
-
-    gm->genColumn(6);
-    gm->genColumn(6);
-    gm->genColumn(6);
-    //gm->getElement(1, 4)->getColour()->print();
-    vector<MatrixElement*> adjacentTwins;
-    gm->getAdjacentTwins(1, 5, &adjacentTwins);
-
-    gm->print();
-    cout << "Score: " << gm->reallocElements() << endl;
-    cout << endl << endl;
-    gm->print();
-    delete gm;
-    */
 
     return 0;
 }

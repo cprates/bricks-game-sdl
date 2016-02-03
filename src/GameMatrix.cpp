@@ -71,6 +71,19 @@ int GameMatrix::reallocElements() {
     return removedElements;
 }
 
+/**
+** Check if (x, y) is not an empty position
+**/
+bool GameMatrix::isThere(int col, int row) {
+    if(col < this->width && col >= 0) {
+        if(row < this->matrix[col]->getHeight() && row >= 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void GameMatrix::print()
 {
     for(int col = 0; col < width; col++) {

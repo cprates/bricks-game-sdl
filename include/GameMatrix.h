@@ -19,6 +19,7 @@ class GameMatrix
         void getAdjacentTwins(int sourfaceX, int sourfaceY, vector<MatrixElement*>* adjacentTwins);
         void getAdjacentTwins(int x, int y, Colour *colour, vector<MatrixElement*>* adjacentTwins);
         int reallocElements();
+        bool isThere(int col, int row);
         void print();
         MatrixCol** getMatrix();
         int getWidth();
