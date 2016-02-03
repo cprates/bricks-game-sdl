@@ -20,6 +20,8 @@ class GameMatrix
         void getAdjacentTwins(int x, int y, Colour *colour, vector<MatrixElement*>* adjacentTwins);
         int reallocElements();
         void print();
+        MatrixCol** getMatrix();
+        int getWidth();
 
     private:
         int width;

@@ -15,7 +15,7 @@ class Scene : public IOListener
     public:
         static const unsigned MAX_CHILDS = 500;
 
-        Scene();
+        Scene(SDL_Renderer* renderer);
         virtual ~Scene();
         virtual void onDraw(SDL_Renderer* renderer);
         virtual void onUpdate(unsigned elapsedTime);
@@ -24,6 +24,9 @@ class Scene : public IOListener
         // IOListener
         virtual void onMouseMove(SDL_Event* ev);
         virtual void onMouseButton(SDL_Event* ev);
+
+    protected:
+        SDL_Renderer* renderer;
 
     private:
         vector<Entity*> childs;

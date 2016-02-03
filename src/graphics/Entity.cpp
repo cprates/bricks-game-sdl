@@ -1,9 +1,10 @@
 #include "Entity.h"
 
-Entity::Entity(const int x, const int y, const int width, const int height, const bool wild) :
+Entity::Entity(const int x, const int y, const int width, const int height, SDL_Renderer* renderer, const bool wild) :
     visible(true),
     wild(wild),
-    id(0)
+    id(0),
+    entityRenderer(renderer)
 {
     this->rect.x = x;
     this->rect.y = y;
@@ -47,9 +48,9 @@ SDL_Rect* Entity::getRect() {
 }
 
 void Entity::onClick(SDL_Event* ev) {
-    cout << "Clicked!!: " << this->id << endl;
+    //cout << "Clicked: " << this->id << endl;
 }
 
 void Entity::onMouseOver(SDL_Event* ev) {
-    cout << "MouseOver!!: " << this->id << endl;
+    //cout << "MouseOver: " << this->id << endl;
 }

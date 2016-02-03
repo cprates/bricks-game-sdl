@@ -1,10 +1,12 @@
 #include "Sprite.h"
 
-Sprite::Sprite(int x, int y, int width, int height, bool wild) : Entity::Entity(x, y, width, height),
+Sprite::Sprite(const string imgPath, int x, int y, int width, int height, SDL_Renderer* renderer, bool wild) :
+    Entity::Entity(x, y, width, height, renderer),
     texture(NULL),
     angle(0)
 {
     this->wild = wild;
+    this->create(imgPath, renderer);
 }
 
 Sprite::~Sprite() {
@@ -29,10 +31,12 @@ bool Sprite::create(const string imgPath, SDL_Renderer* renderer) {
 	if(imgSurface == NULL){
 		return false;
 	}
-    SDL_SetColorKey( imgSurface, SDL_TRUE, SDL_MapRGB( imgSurface->format, 0xFF, 0xFF, 0xFF ) );
+    SDL_SetColorKey( imgSurface, SDL_TRUE, SDL_MapRGB( imgSurface->format, 0x00, 0xFF, 0xFF ) );
 
     this->texture = SDL_CreateTextureFromSurface( renderer, imgSurface );
     if(this->texture == NULL){
+        cout << "!!! Can't load texture: " << imgPath << endl;
+        cout << "!!! Error: " << IMG_GetError() << endl;
         return false;
     }
 
@@ -53,4 +57,8 @@ void Sprite::setAlpha(short alpha) {
     if(this->texture != NULL){
         SDL_SetTextureAlphaMod(this->texture, alpha);
     }
+}
+
+SDL_Texture* Sprite::getTexture() {
+    return this->texture;
 }

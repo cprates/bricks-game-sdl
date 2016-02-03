@@ -1,6 +1,7 @@
 #include "Scene.h"
 
-Scene::Scene():
+Scene::Scene(SDL_Renderer* renderer):
+    renderer(renderer),
     entityIDSeed(1),
     lastClicked(NULL)
 {
@@ -9,7 +10,6 @@ Scene::Scene():
 
 Scene::~Scene()
 {
-
     // remove all the wild Entitys
     vector<Entity*>::iterator it = childs.begin();
     for(; it != childs.end(); it++ ) {
@@ -70,7 +70,7 @@ Entity* Scene::searchTarget(const int x, const int y) {
 }
 
 /**
-**  Only works for AA Box's
+**  Only works with AA Box's
 **/
 bool Scene::overIt(const int x, const int y, SDL_Rect* rect) {
     bool axiX = x >= rect->x && x <= (rect->x + rect->w);

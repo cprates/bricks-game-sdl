@@ -79,6 +79,14 @@ void GameMatrix::print()
     }
 }
 
+int GameMatrix::getWidth() {
+    return this->width;
+}
+
+MatrixCol** GameMatrix::getMatrix() {
+    return this->matrix;
+}
+
 
 
 
