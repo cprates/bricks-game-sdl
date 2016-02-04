@@ -5,7 +5,7 @@
 #include "Level.h"
 #include "GameMatrix.h"
 #include "Grid.h"
-#include "Sprite.h"
+#include "TimerBar.h"
 
 
 class GameScene : public Scene
@@ -25,6 +25,7 @@ class GameScene : public Scene
     private:
         GameMatrix logicMatrix;
         Grid graphicMatrix;
+        TimerBar* timerBar;
 
         void genLogicMatrix(Level* level);
 

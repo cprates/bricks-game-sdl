@@ -9,7 +9,7 @@ class FirstLevel : public Level
         FirstLevel() {
             matrixCols = 4;
             nColours = 4;
-            newColumnTime = 15;
+            newColumnTime = 10;
             scoreToFinish = 50;
         }
     private:

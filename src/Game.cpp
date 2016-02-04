@@ -6,7 +6,6 @@
 #include "Engine.h"
 #include "Scene.h"
 #include "GameScene.h"
-#include "Sprite.h"
 #include "FirstLevel.h"
 
 using namespace std;

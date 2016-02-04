@@ -100,14 +100,13 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454538956 source:c:\miniclip\game\miniclip\src\game.cpp
+1454543907 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
 	"Engine.h"
 	"Scene.h"
 	"GameScene.h"
-	"Sprite.h"
 	"FirstLevel.h"
 
 1454532724 c:\miniclip\game\miniclip\include\gamematrix.h
@@ -119,10 +118,11 @@
 1454538756 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454458513 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454545638 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
+	<chrono>
 
-1454453868 c:\miniclip\game\miniclip\include\graphics\engine.h
+1454548053 c:\miniclip\game\miniclip\include\graphics\engine.h
 	<iostream>
 	<string>
 	<SDL.h>
@@ -469,30 +469,30 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454540282 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454548476 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 
-1454530005 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+1454546190 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Scene.h"
 	"Level.h"
 	"GameMatrix.h"
 	"Grid.h"
-	"Sprite.h"
+	"TimerBar.h"
 
 1454450212 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
-1454452495 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
+1454547312 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
 	"Entity.h"
 
-1454530071 c:\miniclip\game\miniclip\include\graphics\entity.h
+1454547162 c:\miniclip\game\miniclip\include\graphics\entity.h
 	<iostream>
 	<SDL.h>
 
 1454458674 source:c:\miniclip\game\miniclip\src\graphics\sprite.cpp
 	"Sprite.h"
 
-1454458668 c:\miniclip\game\miniclip\include\graphics\sprite.h
+1454547142 c:\miniclip\game\miniclip\include\graphics\sprite.h
 	<SDL.h>
 	<SDL_image.h>
 	"Entity.h"
@@ -514,9 +514,21 @@
 
 1454448685 c:\miniclip\game\miniclip\include\levels\level.h
 
-1454539444 c:\miniclip\game\miniclip\include\levels\firstlevel.h
+1454548417 c:\miniclip\game\miniclip\include\levels\firstlevel.h
 	"Level.h"
 
 1454528340 c:\miniclip\game\miniclip\include\graphics\callbackdef.h
 	"GameScene.h"
+
+1454543098 source:c:\miniclip\game\miniclip\src\graphics\dynamicbar.cpp
+	"DynamicBar.h"
+
+1454543122 c:\miniclip\game\miniclip\include\graphics\dynamicbar.h
+	"Sprite.h"
+
+1454548059 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
+	"TimerBar.h"
+
+1454547912 c:\miniclip\game\miniclip\include\graphics\timerbar.h
+	"Sprite.h"
 

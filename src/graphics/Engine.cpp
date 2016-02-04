@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include <chrono>
 
 Engine::Engine(const int windowWidth, const int windowHeight, const string windowTitle, const int fps) :
     window(NULL),
@@ -72,6 +73,7 @@ bool Engine::init()
 void Engine::start() {
     unsigned ticksCounter = SDL_GetTicks();
     unsigned elapsedTicks = 0;
+    unsigned elapsedTime = SDL_GetTicks();
     SDL_Event e;
 
     while(!shutdown) {
@@ -80,7 +82,8 @@ void Engine::start() {
         SDL_RenderClear( this->renderer );
         // Update and Draw Scene
         if(this->scene != NULL) {
-            this->scene->onUpdate(elapsedTicks);
+            this->scene->onUpdate(SDL_GetTicks() - elapsedTime);
+            elapsedTime = SDL_GetTicks();
             this->scene->onDraw(this->renderer);
         }
         SDL_RenderPresent( this->renderer );

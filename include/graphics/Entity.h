@@ -21,6 +21,8 @@ class Entity
         bool isWild();
         void setWild(bool flag);
         SDL_Rect* getRect();
+        void setWidth(unsigned width);
+        void setHeight(unsigned height);
         virtual void onClick(SDL_Event* ev);
         virtual void onMouseOver(SDL_Event* ev);
 

@@ -3,8 +3,8 @@
 Entity::Entity(const int x, const int y, const int width, const int height, SDL_Renderer* renderer, const bool wild) :
     visible(true),
     wild(wild),
-    id(0),
-    entityRenderer(renderer)
+    entityRenderer(renderer),
+    id(0)
 {
     this->rect.x = x;
     this->rect.y = y;
@@ -45,6 +45,14 @@ unsigned Entity::getID() {
 
 SDL_Rect* Entity::getRect() {
     return &this->rect;
+}
+
+void Entity::setWidth(unsigned width) {
+    this->rect.w = width;
+}
+
+void Entity::setHeight(unsigned height) {
+    this->rect.h = height;
 }
 
 void Entity::onClick(SDL_Event* ev) {

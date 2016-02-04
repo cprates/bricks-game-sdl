@@ -1,5 +1,6 @@
 #include "GameScene.h"
 
+
 GameScene::GameScene(Level* level, SDL_Renderer* renderer) :
     Scene(renderer),
     logicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT),
@@ -9,11 +10,15 @@ GameScene::GameScene(Level* level, SDL_Renderer* renderer) :
     this->graphicMatrix.build(&this->logicMatrix);
     this->graphicMatrix.setEventCallback( &GameScene::gridClickEventCallback );
     this->attachChild(&this->graphicMatrix);
+
+    //timerbar init
+    this->timerBar = new TimerBar(level->getNewColumnTime(), 400, 50, 180, 30, renderer);
+    this->attachChild(this->timerBar);
 }
 
 GameScene::~GameScene()
 {
-    //dtor
+    delete this->timerBar;
 }
 
 

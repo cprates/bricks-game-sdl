@@ -61,6 +61,7 @@
 		<Unit filename="include/graphics/Grid.h" />
 		<Unit filename="include/graphics/IOListener.h" />
 		<Unit filename="include/graphics/Sprite.h" />
+		<Unit filename="include/graphics/TimerBar.h" />
 		<Unit filename="include/graphics/scene/GameScene.h" />
 		<Unit filename="include/graphics/scene/Scene.h" />
 		<Unit filename="include/levels/FirstLevel.h" />
@@ -72,6 +73,7 @@
 		<Unit filename="src/graphics/Entity.cpp" />
 		<Unit filename="src/graphics/Grid.cpp" />
 		<Unit filename="src/graphics/Sprite.cpp" />
+		<Unit filename="src/graphics/TimerBar.cpp" />
 		<Unit filename="src/graphics/scene/GameScene.cpp" />
 		<Unit filename="src/graphics/scene/Scene.cpp" />
 		<Extensions>
