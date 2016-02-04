@@ -6,6 +6,7 @@
 #include "GameMatrix.h"
 #include "Grid.h"
 #include "TimerBar.h"
+#include "ScoreBar.h"
 
 
 class GameScene : public Scene
@@ -28,6 +29,7 @@ class GameScene : public Scene
         GameMatrix logicMatrix;
         Grid graphicMatrix;
         TimerBar* timerBar;
+        ScoreBar* scoreBar;
         Level level;
         bool paused;
 

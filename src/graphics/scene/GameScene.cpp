@@ -18,13 +18,19 @@ GameScene::GameScene(Level level, SDL_Renderer* renderer) :
     this->timerBar->setEventCallback(&GameScene::timerBarTimeoutCallback);
     this->attachChild(this->timerBar);
     this->timerBar->start();
+    //scorebar init
+    this->scoreBar = new ScoreBar(level.getScoreToFinish(), 100, 50, 180, 30, renderer);
+    this->attachChild(this->scoreBar);
 }
 
 GameScene::~GameScene()
 {
     detatchEntity(timerBar);
     detatchEntity(&graphicMatrix);
+    detatchEntity(scoreBar);
+
     delete this->timerBar;
+    delete this->scoreBar;
 }
 
 
@@ -44,8 +50,10 @@ void GameScene::gridClickEventCallback(int x, int y) {
             // Estas duas linhas(logicMatrix.reallocElements() e graphicMatrix.build()) TEM DE FICAR
             // SEMPRE SEGUIDAS PORQUE O build() ACTUALIZA O Grid.matrixWidth. Se houver um realoc e este não for actualizado
             // as coordenadas dos clicks vao ficar desalinhadas
-            cout << "Score: " << logicMatrix.reallocElements() << endl;
-            this->graphicMatrix.build(&this->logicMatrix);
+            int score = logicMatrix.reallocElements();
+            cout << "Score: " << score << endl;
+            graphicMatrix.build(&logicMatrix);
+            scoreBar->incrementScore(score);
         }
         else if(adjacentTwins.size() > 0) {
             // restore element

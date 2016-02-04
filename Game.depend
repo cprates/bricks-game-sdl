@@ -469,15 +469,16 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454596588 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454599023 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 
-1454596838 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+1454598699 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Scene.h"
 	"Level.h"
 	"GameMatrix.h"
 	"Grid.h"
 	"TimerBar.h"
+	"ScoreBar.h"
 
 1454450212 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
@@ -526,9 +527,15 @@
 1454543122 c:\miniclip\game\miniclip\include\graphics\dynamicbar.h
 	"Sprite.h"
 
-1454596720 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
+1454598470 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
 	"TimerBar.h"
 
 1454596727 c:\miniclip\game\miniclip\include\graphics\timerbar.h
 	"Sprite.h"
+
+1454599899 c:\miniclip\game\miniclip\include\graphics\scorebar.h
+	"Sprite.h"
+
+1454599598 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
+	"ScoreBar.h"
 
