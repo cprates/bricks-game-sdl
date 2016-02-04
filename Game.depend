@@ -100,13 +100,14 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454593898 source:c:\miniclip\game\miniclip\src\game.cpp
+1454602382 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
 	"Engine.h"
 	"Scene.h"
 	"GameScene.h"
+	"MainMenuScene.h"
 	"FirstLevel.h"
 
 1454532724 c:\miniclip\game\miniclip\include\gamematrix.h
@@ -480,20 +481,20 @@
 	"TimerBar.h"
 	"ScoreBar.h"
 
-1454450212 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
+1454608621 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
-1454547312 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
+1454606919 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
 	"Entity.h"
 
 1454547162 c:\miniclip\game\miniclip\include\graphics\entity.h
 	<iostream>
 	<SDL.h>
 
-1454458674 source:c:\miniclip\game\miniclip\src\graphics\sprite.cpp
+1454607419 source:c:\miniclip\game\miniclip\src\graphics\sprite.cpp
 	"Sprite.h"
 
-1454547142 c:\miniclip\game\miniclip\include\graphics\sprite.h
+1454607426 c:\miniclip\game\miniclip\include\graphics\sprite.h
 	<SDL.h>
 	<SDL_image.h>
 	"Entity.h"
@@ -536,6 +537,26 @@
 1454599899 c:\miniclip\game\miniclip\include\graphics\scorebar.h
 	"Sprite.h"
 
-1454599598 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
+1454599923 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
+
+1454606608 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+	"MainMenuScene.h"
+
+1454608871 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+	<SDL.h>
+	"Level.h"
+	"FirstLevel.h"
+	"SecondLevel.h"
+	"Scene.h"
+	"Button.h"
+
+1454608639 c:\miniclip\game\miniclip\include\graphics\button.h
+	"Sprite.h"
+
+1454606375 source:c:\miniclip\game\miniclip\src\graphics\button.cpp
+	"Button.h"
+
+1454608844 c:\miniclip\game\miniclip\include\levels\secondlevel.h
+	"Level.h"
 

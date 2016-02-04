@@ -22,20 +22,18 @@ void Sprite::onDraw(SDL_Renderer* renderer) {
 	SDL_RenderCopyEx(renderer, this->texture, NULL, &this->rect, angle, NULL, SDL_FLIP_NONE);
 }
 
-void Sprite::onUpdate(const unsigned elapsedTime) {
-
-}
-
 bool Sprite::create(const string imgPath, SDL_Renderer* renderer) {
 	SDL_Surface* imgSurface = IMG_Load(imgPath.c_str());
 	if(imgSurface == NULL){
+        cout << "!!! Can't load texture: " << imgPath << endl;
+        cout << "!!! Error: " << IMG_GetError() << endl;
 		return false;
 	}
     SDL_SetColorKey( imgSurface, SDL_TRUE, SDL_MapRGB( imgSurface->format, 0x00, 0xFF, 0xFF ) );
 
     this->texture = SDL_CreateTextureFromSurface( renderer, imgSurface );
     if(this->texture == NULL){
-        cout << "!!! Can't load texture: " << imgPath << endl;
+        cout << "!!! Can't create texture: " << imgPath << endl;
         cout << "!!! Error: " << IMG_GetError() << endl;
         return false;
     }

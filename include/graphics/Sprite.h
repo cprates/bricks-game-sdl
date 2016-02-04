@@ -13,7 +13,6 @@ class Sprite : public Entity
         Sprite(const string imgPath, int x, int y, int width, int height, SDL_Renderer* renderer, bool wild = false);
         virtual ~Sprite();
         virtual void onDraw(SDL_Renderer* renderer);
-        virtual void onUpdate(const unsigned elapsedTime);
         void setAngle(const double angle);
         short getAngle();
         void setAlpha(short alpha);
