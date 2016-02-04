@@ -67,6 +67,12 @@ void Grid::onDraw(SDL_Renderer* renderer) {
         return;
     }
 	SDL_RenderCopyEx(renderer, this->gridImage, NULL, &this->rect, 0, NULL, SDL_FLIP_NONE);
+#ifdef __DEBUG
+    SDL_Rect outlineRect = { rect.x, rect.y, rect.w, rect.h};
+    SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
+    SDL_RenderDrawRect( renderer, &outlineRect );
+    SDL_SetRenderDrawColor( renderer, 0x00, 0x00, 0x00, 0xFF );
+#endif
 }
 
 void Grid::onClick(SDL_Event* ev) {

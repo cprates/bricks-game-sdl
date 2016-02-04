@@ -11,7 +11,6 @@ GameMatrix::GameMatrix(int x, int y, int maxWidth, int maxHeight) :
     this->maxWidth = maxWidth;
     this->maxHeight = maxHeight;
     this->matrix = new MatrixCol*[maxWidth];
-
     srand((unsigned)time(NULL));
 }
 

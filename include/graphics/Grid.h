@@ -1,6 +1,8 @@
 #ifndef GRID_H
 #define GRID_H
 
+#define __DEBUG
+
 #include <SDL.h>
 #include <string>
 

@@ -3,13 +3,25 @@
 
 #include "Sprite.h"
 
+class GameScene;
+
 class TimerBar : public Sprite
 {
+    /*
+    template<typename T>
+    struct TouchCallBack {
+        typedef void (T::* type)();
+    };*/
+
     unsigned timeout;
     float counter; // count elapsed time(ms) since init
     float _ratio;  // time VS shaft width
     Sprite* timerBarShaft;
     unsigned shaftMaxWidth;
+    bool paused;
+    typedef void (GameScene::* TimeoutCallback)();
+    TimeoutCallback timeoutCallback;
+    GameScene* parent;
 
 
     public:
@@ -18,10 +30,14 @@ class TimerBar : public Sprite
         static const short FRAME_BORDER = 3; // pixels
 
         // timeout - maximum time(in seconds) until reach the end
-        TimerBar(unsigned timeout, int x, int y, int width, int height, SDL_Renderer* renderer);
+        TimerBar(unsigned timeout, int x, int y, int width, int height, GameScene* parent, SDL_Renderer* renderer);
         virtual ~TimerBar();
         void onDraw(SDL_Renderer* renderer);
         void onUpdate(const unsigned elapsedTime);
+        void pause();
+        void resume();
+        void start();
+        void setEventCallback( TimeoutCallback callback );
 };
 
 #endif // TIMERBAR_H

@@ -19,7 +19,7 @@ int main( int argc, char* args[] ) {
     if(!engine.init()) return -1;
 
     FirstLevel firstLevel;
-    GameScene scene(&firstLevel, engine.getRenderer());
+    GameScene scene(firstLevel, engine.getRenderer());
     engine.setIOListener(&scene);
     engine.setScene(&scene);
     engine.start();

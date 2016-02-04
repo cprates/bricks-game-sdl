@@ -7,7 +7,7 @@ class FirstLevel : public Level
 {
     public:
         FirstLevel() {
-            matrixCols = 4;
+            matrixCols = 6;
             nColours = 4;
             newColumnTime = 10;
             scoreToFinish = 50;
