@@ -1,4 +1,5 @@
 #include "MainMenuScene.h"
+#include "SceneManager.h"
 
 
 
@@ -30,5 +31,5 @@ MainMenuScene::~MainMenuScene()
 }
 
 void MainMenuScene::buttonClickCallback(Level* level) {
-    cout << "Level: " << level->getScoreToFinish() << endl;
+    SceneManager::getInstance()->loadGameScene(*level);
 }

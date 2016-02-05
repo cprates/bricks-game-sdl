@@ -3,10 +3,9 @@
 
 #include <SDL.h>
 
-#include "Level.h"
 #include "FirstLevel.h"
 #include "SecondLevel.h"
-#include "Scene.h"
+#include "Engine.h"
 #include "Button.h"
 
 
@@ -19,6 +18,7 @@ class MainMenuScene : public Scene
     private:
         static const string BG_FILE_PATH;
         SDL_Renderer* renderer;
+        Engine* engine;
 
         void buttonClickCallback(Level* level);
 };

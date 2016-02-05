@@ -56,25 +56,31 @@
 		<Unit filename="include/colours/GreyColour.h" />
 		<Unit filename="include/colours/RedColour.h" />
 		<Unit filename="include/colours/YellowColour.h" />
+		<Unit filename="include/graphics/Button.h" />
 		<Unit filename="include/graphics/Engine.h" />
 		<Unit filename="include/graphics/Entity.h" />
 		<Unit filename="include/graphics/Grid.h" />
 		<Unit filename="include/graphics/IOListener.h" />
+		<Unit filename="include/graphics/ScoreBar.h" />
 		<Unit filename="include/graphics/Sprite.h" />
 		<Unit filename="include/graphics/TimerBar.h" />
 		<Unit filename="include/graphics/scene/GameScene.h" />
+		<Unit filename="include/graphics/scene/MainMenuScene.h" />
 		<Unit filename="include/graphics/scene/Scene.h" />
 		<Unit filename="include/levels/FirstLevel.h" />
 		<Unit filename="include/levels/Level.h" />
+		<Unit filename="include/levels/SecondLevel.h" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameMatrix.cpp" />
 		<Unit filename="src/MatrixCol.cpp" />
 		<Unit filename="src/graphics/Engine.cpp" />
 		<Unit filename="src/graphics/Entity.cpp" />
 		<Unit filename="src/graphics/Grid.cpp" />
+		<Unit filename="src/graphics/ScoreBar.cpp" />
 		<Unit filename="src/graphics/Sprite.cpp" />
 		<Unit filename="src/graphics/TimerBar.cpp" />
 		<Unit filename="src/graphics/scene/GameScene.cpp" />
+		<Unit filename="src/graphics/scene/MainMenuScene.cpp" />
 		<Unit filename="src/graphics/scene/Scene.cpp" />
 		<Extensions>
 			<code_completion />

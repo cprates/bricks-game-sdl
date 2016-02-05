@@ -37,6 +37,7 @@ class TimerBar : public Sprite
         void pause();
         void resume();
         void start();
+        void reset();
         void setEventCallback( TimeoutCallback callback );
 };
 

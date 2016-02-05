@@ -23,6 +23,7 @@ class GameMatrix
         void print();
         MatrixCol** getMatrix();
         int getWidth();
+        void clean();
 
     private:
         int width;

@@ -36,4 +36,5 @@ void ScoreBar::incrementScore(int score) {
 void ScoreBar::reset() {
     this->_ratio = 0.0;
     this->score = 0;
+    incrementScore(0);
 }

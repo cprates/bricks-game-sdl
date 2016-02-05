@@ -1,10 +1,11 @@
 #include "GameScene.h"
+#include "SceneManager.h"
 
-
-GameScene::GameScene(Level level, SDL_Renderer* renderer) :
+GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     Scene(renderer),
     logicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT),
     graphicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT, this, renderer),
+    engine(engine),
     level(level),
     paused(false)
 {
@@ -21,6 +22,18 @@ GameScene::GameScene(Level level, SDL_Renderer* renderer) :
     //scorebar init
     this->scoreBar = new ScoreBar(level.getScoreToFinish(), 100, 50, 180, 30, renderer);
     this->attachChild(this->scoreBar);
+
+    // buttons
+    DummyData dm;
+    Button<DummyData, GameScene>* resetButton = new Button<DummyData, GameScene>
+        ("restart_button.png", 750, 400, 40, 40, dm, this, renderer, true);
+    resetButton->setClickCallback(&GameScene::buttonResetCallback);
+    attachChild(resetButton);
+
+    Button<DummyData, GameScene>* homeButton = new Button<DummyData, GameScene>
+        ("home_button.png", 750, 480, 40, 40, dm, this, renderer, true);
+    homeButton->setClickCallback(&GameScene::buttonHomeCallback);
+    attachChild(homeButton);
 }
 
 GameScene::~GameScene()
@@ -37,9 +50,13 @@ GameScene::~GameScene()
 void GameScene::genLogicMatrix(Level* level) {
     short cols = level->getMatrixCols();
     short nColours = level->getNColours();
+    cout << "Antes" << endl;
+    this->logicMatrix.clean();
+
     for(int i = 0; i < cols; i++) {
         this->logicMatrix.genColumn(nColours);
     }
+    cout << "Depois" << endl;
 }
 
 void GameScene::gridClickEventCallback(int x, int y) {
@@ -79,3 +96,28 @@ void GameScene::timerBarTimeoutCallback() {
 void GameScene::onUpdate(unsigned elapsedTime) {
     Scene::onUpdate(elapsedTime);
 }
+
+void GameScene::reset() {
+    timerBar->reset();
+    scoreBar->reset();
+    this->genLogicMatrix(&level);
+    this->graphicMatrix.build(&this->logicMatrix);
+    paused = false;
+}
+
+void GameScene::changeLevel(Level level) {
+    this->level = level;
+    reset();
+    timerBar->resume();
+}
+
+void GameScene::buttonResetCallback(DummyData* dm) {
+    reset();
+    timerBar->resume();
+}
+
+void GameScene::buttonHomeCallback(DummyData* dm) {
+    SceneManager::getInstance()->loadMainMenuScene();
+}
+
+

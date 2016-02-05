@@ -100,23 +100,20 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454602382 source:c:\miniclip\game\miniclip\src\game.cpp
+1454678072 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
 	"Engine.h"
-	"Scene.h"
-	"GameScene.h"
-	"MainMenuScene.h"
-	"FirstLevel.h"
+	"SceneManager.h"
 
-1454532724 c:\miniclip\game\miniclip\include\gamematrix.h
+1454673893 c:\miniclip\game\miniclip\include\gamematrix.h
 	<vector>
 	"MatrixElement.h"
 	"MatrixCol.h"
 	"Colour.h"
 
-1454593840 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
+1454674230 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
 1454545638 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
@@ -470,16 +467,17 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454599023 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454675566 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 
-1454598699 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
-	"Scene.h"
+1454675550 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+	"Engine.h"
 	"Level.h"
 	"GameMatrix.h"
 	"Grid.h"
 	"TimerBar.h"
 	"ScoreBar.h"
+	"Button.h"
 
 1454608621 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
@@ -528,10 +526,10 @@
 1454543122 c:\miniclip\game\miniclip\include\graphics\dynamicbar.h
 	"Sprite.h"
 
-1454598470 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
+1454671767 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
 	"TimerBar.h"
 
-1454596727 c:\miniclip\game\miniclip\include\graphics\timerbar.h
+1454671801 c:\miniclip\game\miniclip\include\graphics\timerbar.h
 	"Sprite.h"
 
 1454599899 c:\miniclip\game\miniclip\include\graphics\scorebar.h
@@ -540,15 +538,15 @@
 1454599923 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
 
-1454606608 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+1454678668 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
 	"MainMenuScene.h"
+	"SceneManager.h"
 
-1454608871 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+1454678655 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
 	<SDL.h>
-	"Level.h"
 	"FirstLevel.h"
 	"SecondLevel.h"
-	"Scene.h"
+	"Engine.h"
 	"Button.h"
 
 1454608639 c:\miniclip\game\miniclip\include\graphics\button.h
@@ -559,4 +557,13 @@
 
 1454608844 c:\miniclip\game\miniclip\include\levels\secondlevel.h
 	"Level.h"
+
+1454678372 source:c:\miniclip\game\miniclip\src\graphics\scene\scenemanager.cpp
+	"SceneManager.h"
+
+1454678639 c:\miniclip\game\miniclip\include\graphics\scene\scenemanager.h
+	<iostream>
+	"Engine.h"
+	"MainMenuScene.h"
+	"GameScene.h"
 

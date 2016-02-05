@@ -54,6 +54,11 @@ void TimerBar::start() {
     this->paused = false;
 }
 
+void TimerBar::reset() {
+    this->counter = 0;
+    this->paused = true;
+}
+
 void TimerBar::setEventCallback( TimeoutCallback callback ) {
    this->timeoutCallback = callback;
 }

@@ -131,3 +131,10 @@ int GameMatrix::reallocColumns() {
 
     return removed;
 }
+
+void GameMatrix::clean() {
+    for(int col = 0; col < width; col++) {
+        delete matrix[col];
+    }
+    width = 0;
+}

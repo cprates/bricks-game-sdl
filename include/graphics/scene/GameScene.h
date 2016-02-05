@@ -1,13 +1,15 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include "Scene.h"
+#include "Engine.h"
 #include "Level.h"
 #include "GameMatrix.h"
 #include "Grid.h"
 #include "TimerBar.h"
 #include "ScoreBar.h"
+#include "Button.h"
 
+class DummyData {};
 
 class GameScene : public Scene
 {
@@ -19,21 +21,26 @@ class GameScene : public Scene
         static const unsigned GRID_X_POS  = 100;  // pixels
         static const unsigned GRID_Y_POS  = 110;  // pixels
 
-        GameScene(Level level, SDL_Renderer* renderer);
+        GameScene(Level level, Engine* engine, SDL_Renderer* renderer);
         virtual ~GameScene();
         void gridClickEventCallback(int x, int y);
         void timerBarTimeoutCallback();
         void onUpdate(unsigned elapsedTime);
+        void reset();
+        void changeLevel(Level level);
 
     private:
         GameMatrix logicMatrix;
         Grid graphicMatrix;
         TimerBar* timerBar;
         ScoreBar* scoreBar;
+        Engine* engine;
         Level level;
         bool paused;
 
         void genLogicMatrix(Level* level);
+        void buttonResetCallback(DummyData* dm);
+        void buttonHomeCallback(DummyData* dm);
 
 };
 
