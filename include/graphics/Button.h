@@ -7,7 +7,7 @@ template<class T, class R>
 class Button: public Sprite
 {
     public:
-        typedef void (R::* ClickCallback)(T*);
+        typedef void (R::* ClickCallback)(Entity*, T*);
         Button(const string imgPath, int x, int y, int width, int height, T data, R* parent, SDL_Renderer* renderer, bool wild = false):
             Sprite(imgPath, x, y, width, height, renderer, wild),
             data(data),
@@ -22,7 +22,7 @@ class Button: public Sprite
         }
 
         virtual void onClick(SDL_Event* ev) {
-            (parent->*callback)(&data);
+            (parent->*callback)(this, &data);
         }
 
     private:

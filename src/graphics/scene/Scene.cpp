@@ -63,7 +63,8 @@ bool Scene::detatchEntity(Entity* entity) {
 Entity* Scene::searchTarget(const int x, const int y) {
     // iterating from the end to give precedence from top to bottom
     vector<Entity*>::reverse_iterator it = this->childs.rbegin();
-    for(; it != this->childs.rend() && !overIt(x, y, (*it)->getRect()) ; it++) {}
+    for(; (it != this->childs.rend() && !overIt(x, y, (*it)->getRect())) ||
+          (it != this->childs.rend() && !(*it)->isVisible()) ; it++) {}
     if(it != this->childs.rend()) {
         return *it;
     }

@@ -21,6 +21,7 @@ class ScoreBar : public Sprite
         void onDraw(SDL_Renderer* renderer);
         void incrementScore(int score);
         void reset();
+        void setMaxScore(float maxScore);
 };
 
 #endif // SCOREBAR_H

@@ -35,10 +35,12 @@ class TimerBar : public Sprite
         void onDraw(SDL_Renderer* renderer);
         void onUpdate(const unsigned elapsedTime);
         void pause();
+        void pause(bool flag);
         void resume();
         void start();
         void reset();
         void setEventCallback( TimeoutCallback callback );
+        void setTimeout(unsigned timeout);
 };
 
 #endif // TIMERBAR_H

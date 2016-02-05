@@ -14,10 +14,11 @@ class DummyData {};
 class GameScene : public Scene
 {
     public:
-        static const short BLOCK_WIDTH   = 40;    // pixels
-        static const short BLOCK_HEIGHT  = 40;    // pixels
-        static const short GRID_WIDTH  = 7;      // max n blocks
-        static const short GRID_HEIGHT = 10;      // max n blocks
+        static const string GAMEOVER_FILE_PATH;
+        static const short BLOCK_WIDTH    = 40;   // pixels
+        static const short BLOCK_HEIGHT   = 40;   // pixels
+        static const short GRID_WIDTH     = 15;   // max n blocks
+        static const short GRID_HEIGHT    = 9;    // max n blocks
         static const unsigned GRID_X_POS  = 100;  // pixels
         static const unsigned GRID_Y_POS  = 110;  // pixels
 
@@ -37,10 +38,21 @@ class GameScene : public Scene
         Engine* engine;
         Level level;
         bool paused;
+        bool gameOver;
+        Button<DummyData, GameScene>* pauseButton;
+        Button<DummyData, GameScene>* resumeButton;
+        Sprite* gameOverSprite;
 
+        void initTimeBar();
+        void initScoreBar();
+        void setButtons();
         void genLogicMatrix(Level* level);
-        void buttonResetCallback(DummyData* dm);
-        void buttonHomeCallback(DummyData* dm);
+        void onGameOver();
+        void buttonResetCallback(Entity* button, DummyData* dm);
+        void buttonHomeCallback(Entity* button, DummyData* dm);
+        void buttonPushGridCallback(Entity* button, DummyData* dm);
+        void buttonPauseCallback(Entity* button, DummyData* dm);
+        void buttonResumeCallback(Entity* button, DummyData* dm);
 
 };
 

@@ -5,6 +5,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include "Scene.h"
 #include "IOListener.h"
@@ -14,6 +15,7 @@ using namespace std;
 class Engine
 {
     public:
+        static const string FONT_PATH;
         static const short  RENDERER_BG_COLOUR_RED   = 0;
         static const short  RENDERER_BG_COLOUR_GREEN = 0;
         static const short  RENDERER_BG_COLOUR_BLUE  = 0;
@@ -26,6 +28,9 @@ class Engine
         void setScene(Scene* scene);
         SDL_Renderer* getRenderer();
         void setIOListener(IOListener* listener);
+        SDL_Texture* renderText(const string text, short fontSize, SDL_Color colour);
+        int getScreenWidth();
+        int getScreenHeight();
 
     private:
         SDL_Window* window;
@@ -40,7 +45,6 @@ class Engine
         unsigned int ticksPerFrame;
 
         void handleIO(SDL_Event* ev);
-
 };
 
 #endif // ENGINE_H

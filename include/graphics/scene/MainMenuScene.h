@@ -20,7 +20,7 @@ class MainMenuScene : public Scene
         SDL_Renderer* renderer;
         Engine* engine;
 
-        void buttonClickCallback(Level* level);
+        void buttonClickCallback(Entity* button, Level* level);
 };
 
 #endif // MAINMENUSCENE_H

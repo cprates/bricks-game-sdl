@@ -1,6 +1,6 @@
 #include "MainMenuScene.h"
 #include "SceneManager.h"
-
+#include "Button.h"
 
 
 const string MainMenuScene::BG_FILE_PATH = "mainmenu_background.png";
@@ -30,6 +30,6 @@ MainMenuScene::~MainMenuScene()
 
 }
 
-void MainMenuScene::buttonClickCallback(Level* level) {
+void MainMenuScene::buttonClickCallback(Entity* button, Level* level) {
     SceneManager::getInstance()->loadGameScene(*level);
 }

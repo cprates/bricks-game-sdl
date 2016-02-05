@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include <chrono>
 
+const string Engine::FONT_PATH = "font/font.ttf";
+
 Engine::Engine(const int windowWidth, const int windowHeight, const string windowTitle, const int fps) :
     window(NULL),
     renderer(NULL),
@@ -22,6 +24,7 @@ Engine::~Engine()
 	SDL_DestroyWindow( window );
 	window = NULL;
 
+    TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -35,37 +38,42 @@ bool Engine::init()
 		cout << "!!! SDL Error: " << endl << SDL_GetError() << endl;
 		return false;
 	}
-	else {
-		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) ) {
-			cout << "--- Linear texture filtering not enabled!" << endl;
-		}
 
-		window = SDL_CreateWindow( wTitle.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, wWidth, wHeight, SDL_WINDOW_SHOWN );
-		if( window == NULL ) {
-			cout << "!!! Window could not be created!" << endl;
-			cout << "!!! SDL Error: " << endl <<  SDL_GetError() << endl;
-			return false;
-		}
-		else {
-			//renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
-			renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE );
-			if( renderer == NULL ) {
-				cout << "!!! Cant create the Renderer!" << endl;
-				cout << "!!! SDL Error: " << endl << SDL_GetError() << endl;
-			}
-			else {
-                SDL_SetRenderDrawColor( this->renderer, RENDERER_BG_COLOUR_RED, RENDERER_BG_COLOUR_GREEN,
-                       RENDERER_BG_COLOUR_BLUE, RENDERER_BG_COLOUR_ALPHA );
-				//Initialize PNG system
-				int imgFlags = IMG_INIT_PNG;
-				if( !( IMG_Init( imgFlags ) & imgFlags ) ) {
-					cout << "!!! Error initializing SDL_image!" << endl;
-					cout << "!!! SDL_image Error: " << endl << IMG_GetError() << endl;
-					return false;
-				}
-			}
-		}
-	}
+    if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) ) {
+        cout << "--- Linear texture filtering not enabled!" << endl;
+    }
+
+    window = SDL_CreateWindow( wTitle.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, wWidth, wHeight, SDL_WINDOW_SHOWN );
+    if( window == NULL ) {
+        cout << "!!! Window could not be created!" << endl;
+        cout << "!!! SDL Error: " << endl <<  SDL_GetError() << endl;
+        return false;
+    }
+
+    //renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+    renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE );
+    if( renderer == NULL ) {
+        cout << "!!! Cant create the Renderer!" << endl;
+        cout << "!!! SDL Error: " << endl << SDL_GetError() << endl;
+        return false;
+    }
+
+    SDL_SetRenderDrawColor( this->renderer, RENDERER_BG_COLOUR_RED, RENDERER_BG_COLOUR_GREEN,
+           RENDERER_BG_COLOUR_BLUE, RENDERER_BG_COLOUR_ALPHA );
+    //Initialize SDL_img
+    int imgFlags = IMG_INIT_PNG;
+    if( !( IMG_Init( imgFlags ) & imgFlags ) ) {
+        cout << "!!! Error initializing SDL_image!" << endl;
+        cout << "!!! SDL_image Error: " << endl << IMG_GetError() << endl;
+        return false;
+    }
+
+     //Initialize SDL_ttf
+    if( TTF_Init() != 0 ) {
+        cout << "!!! Error initializing SDL_ttf!" << endl;
+        cout << "!!! SDL_ttf Error: " << endl << TTF_GetError() << endl;
+        return false;
+    }
 
 	return true;
 }
@@ -112,6 +120,14 @@ void Engine::setIOListener(IOListener* listener) {
     this->ioListener = listener;
 }
 
+int Engine::getScreenWidth() {
+    return this->wWidth;
+}
+
+int Engine::getScreenHeight() {
+    return this->wHeight;
+}
+
 void Engine::handleIO(SDL_Event* ev) {
     while( SDL_PollEvent(ev) != 0 ) {
         switch(ev->type) {
@@ -132,3 +148,31 @@ void Engine::handleIO(SDL_Event* ev) {
         }
     }
 }
+
+SDL_Texture* Engine::renderText(const string text, short fontSize, SDL_Color colour) {
+	TTF_Font* font = TTF_OpenFont(FONT_PATH.c_str(), fontSize);
+	if(font == NULL) {
+        cout << "!!! Error while loagind font!" << endl;
+        cout << "!!! SDL_ttf Error: " << endl << TTF_GetError() << endl;
+        return NULL;
+	}
+
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), colour);
+    if(textSurface == NULL) {
+        cout << "!!! Unable to render text!" << endl;
+        cout << "!!! SDL_ttf Error: " << endl << TTF_GetError() << endl;
+        return NULL;
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    if(texture == NULL) {
+        cout << "!!! Unable to create texture from rendered text!" << endl;
+        cout << "!!! SDL_ttf Error: " << endl << TTF_GetError() << endl;
+        return NULL;
+    }
+
+    SDL_FreeSurface(textSurface);
+    TTF_CloseFont(font);
+    return texture;
+}
+

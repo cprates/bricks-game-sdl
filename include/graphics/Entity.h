@@ -2,7 +2,10 @@
 #define ENTITY_H
 
 #include <iostream>
+#include <vector>
 #include <SDL.h>
+
+class BaseModifier;
 
 using namespace std;
 
@@ -15,7 +18,8 @@ class Entity
         void setID(const unsigned id);
         unsigned getID();
         virtual void onDraw(SDL_Renderer* renderer){}
-        virtual void onUpdate(const unsigned elapsedTime){}
+        virtual void onUpdate(const unsigned elapsedTime);
+        virtual void setAlpha(short alpha) {};
         bool isVisible();
         void setVisible(bool flag);
         bool isWild();
@@ -23,8 +27,12 @@ class Entity
         SDL_Rect* getRect();
         void setWidth(unsigned width);
         void setHeight(unsigned height);
+        void setPosition(int x, int y);
+        void setPosX(int x);
+        void setPosY(int y);
         virtual void onClick(SDL_Event* ev);
         virtual void onMouseOver(SDL_Event* ev);
+        void addModifier(BaseModifier* modifier);
 
     protected:
         bool visible;
@@ -32,6 +40,7 @@ class Entity
         bool wild;
         SDL_Rect rect;
         SDL_Renderer* entityRenderer;
+        vector<BaseModifier*> modifiersList;
 
     private:
         unsigned id;

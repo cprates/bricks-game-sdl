@@ -38,3 +38,7 @@ void ScoreBar::reset() {
     this->score = 0;
     incrementScore(0);
 }
+
+void ScoreBar::setMaxScore(float maxScore) {
+    this->maxScore = maxScore;
+}

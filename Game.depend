@@ -116,15 +116,16 @@
 1454674230 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454545638 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454697150 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
 	<chrono>
 
-1454548053 c:\miniclip\game\miniclip\include\graphics\engine.h
+1454697076 c:\miniclip\game\miniclip\include\graphics\engine.h
 	<iostream>
 	<string>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_ttf.h>
 	"Scene.h"
 	"IOListener.h"
 
@@ -467,10 +468,15 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454675566 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454705983 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
+	"SceneManager.h"
+	"Button.h"
+	"Text.h"
+	"AlphaModifier.h"
+	"MoveYModifier.h"
 
-1454675550 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+1454696772 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Engine.h"
 	"Level.h"
 	"GameMatrix.h"
@@ -479,14 +485,16 @@
 	"ScoreBar.h"
 	"Button.h"
 
-1454608621 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
+1454684939 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
-1454606919 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
+1454705550 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
 	"Entity.h"
+	"BaseModifier.h"
 
-1454547162 c:\miniclip\game\miniclip\include\graphics\entity.h
+1454705443 c:\miniclip\game\miniclip\include\graphics\entity.h
 	<iostream>
+	<vector>
 	<SDL.h>
 
 1454607419 source:c:\miniclip\game\miniclip\src\graphics\sprite.cpp
@@ -504,7 +512,7 @@
 	"Grid.h"
 	<cmath>
 
-1454592718 c:\miniclip\game\miniclip\include\graphics\grid.h
+1454691069 c:\miniclip\game\miniclip\include\graphics\grid.h
 	<SDL.h>
 	<string>
 	"Entity.h"
@@ -526,36 +534,37 @@
 1454543122 c:\miniclip\game\miniclip\include\graphics\dynamicbar.h
 	"Sprite.h"
 
-1454671767 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
+1454693949 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
 	"TimerBar.h"
 
-1454671801 c:\miniclip\game\miniclip\include\graphics\timerbar.h
+1454693901 c:\miniclip\game\miniclip\include\graphics\timerbar.h
 	"Sprite.h"
 
-1454599899 c:\miniclip\game\miniclip\include\graphics\scorebar.h
+1454694052 c:\miniclip\game\miniclip\include\graphics\scorebar.h
 	"Sprite.h"
 
-1454599923 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
+1454694169 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
 
-1454678668 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+1454683627 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
 	"MainMenuScene.h"
 	"SceneManager.h"
+	"Button.h"
 
-1454678655 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+1454683620 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
 	<SDL.h>
 	"FirstLevel.h"
 	"SecondLevel.h"
 	"Engine.h"
 	"Button.h"
 
-1454608639 c:\miniclip\game\miniclip\include\graphics\button.h
+1454683684 c:\miniclip\game\miniclip\include\graphics\button.h
 	"Sprite.h"
 
 1454606375 source:c:\miniclip\game\miniclip\src\graphics\button.cpp
 	"Button.h"
 
-1454608844 c:\miniclip\game\miniclip\include\levels\secondlevel.h
+1454694551 c:\miniclip\game\miniclip\include\levels\secondlevel.h
 	"Level.h"
 
 1454678372 source:c:\miniclip\game\miniclip\src\graphics\scene\scenemanager.cpp
@@ -566,4 +575,33 @@
 	"Engine.h"
 	"MainMenuScene.h"
 	"GameScene.h"
+
+1454362933 c:\miniclip\i686-w64-mingw32\include\sdl2\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454693843 source:c:\miniclip\game\miniclip\src\graphics\text.cpp
+	"Text.h"
+
+1454692134 c:\miniclip\game\miniclip\include\graphics\text.h
+	<SDL.h>
+	<SDL_image.h>
+	"Entity.h"
+	"Engine.h"
+
+1454702759 c:\miniclip\game\miniclip\include\graphics\modifiers\movemodifier.h
+	"Entity.h"
+
+1454704167 c:\miniclip\game\miniclip\include\graphics\modifiers\alphamodifier.h
+	"BaseModifier.h"
+
+1454704584 c:\miniclip\game\miniclip\include\graphics\modifiers\basemodifier.h
+	"Entity.h"
+
+1454705528 c:\miniclip\game\miniclip\include\graphics\modifiers\movexmodifier.h
+	"BaseModifier.h"
+
+1454705661 c:\miniclip\game\miniclip\include\graphics\modifiers\moveymodifier.h
+	"BaseModifier.h"
 

@@ -45,6 +45,10 @@ void TimerBar::pause() {
     this->paused = true;
 }
 
+void TimerBar::pause(bool flag) {
+    this->paused = flag;
+}
+
 void TimerBar::resume() {
     this->paused = false;
 }
@@ -61,4 +65,8 @@ void TimerBar::reset() {
 
 void TimerBar::setEventCallback( TimeoutCallback callback ) {
    this->timeoutCallback = callback;
+}
+
+void TimerBar::setTimeout(unsigned timeout) {
+    this->timeout = timeout;
 }
