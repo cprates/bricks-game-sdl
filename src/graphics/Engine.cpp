@@ -60,6 +60,7 @@ bool Engine::init()
 
     SDL_SetRenderDrawColor( this->renderer, RENDERER_BG_COLOUR_RED, RENDERER_BG_COLOUR_GREEN,
            RENDERER_BG_COLOUR_BLUE, RENDERER_BG_COLOUR_ALPHA );
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     //Initialize SDL_img
     int imgFlags = IMG_INIT_PNG;
     if( !( IMG_Init( imgFlags ) & imgFlags ) ) {

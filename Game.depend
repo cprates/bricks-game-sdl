@@ -116,7 +116,7 @@
 1454674230 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454697150 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454711582 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
 	<chrono>
 
@@ -468,7 +468,7 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454705983 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454715430 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 	"SceneManager.h"
 	"Button.h"
@@ -476,9 +476,9 @@
 	"AlphaModifier.h"
 	"MoveYModifier.h"
 
-1454696772 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+1454714272 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Engine.h"
-	"Level.h"
+	"Ruler.h"
 	"GameMatrix.h"
 	"Grid.h"
 	"TimerBar.h"
@@ -508,7 +508,7 @@
 1454439528 c:\miniclip\game\miniclip\include\graphics\iolistener.h
 	<SDL.h>
 
-1454592825 source:c:\miniclip\game\miniclip\src\graphics\grid.cpp
+1454711922 source:c:\miniclip\game\miniclip\src\graphics\grid.cpp
 	"Grid.h"
 	<cmath>
 
@@ -520,9 +520,9 @@
 	"MatrixCol.h"
 	"Sprite.h"
 
-1454448685 c:\miniclip\game\miniclip\include\levels\level.h
+1454712330 c:\miniclip\game\miniclip\include\levels\level.h
 
-1454592495 c:\miniclip\game\miniclip\include\levels\firstlevel.h
+1454712298 c:\miniclip\game\miniclip\include\levels\firstlevel.h
 	"Level.h"
 
 1454528340 c:\miniclip\game\miniclip\include\graphics\callbackdef.h
@@ -534,7 +534,7 @@
 1454543122 c:\miniclip\game\miniclip\include\graphics\dynamicbar.h
 	"Sprite.h"
 
-1454693949 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
+1454707006 source:c:\miniclip\game\miniclip\src\graphics\timerbar.cpp
 	"TimerBar.h"
 
 1454693901 c:\miniclip\game\miniclip\include\graphics\timerbar.h
@@ -543,18 +543,17 @@
 1454694052 c:\miniclip\game\miniclip\include\graphics\scorebar.h
 	"Sprite.h"
 
-1454694169 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
+1454707014 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
 
-1454683627 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+1454715850 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
 	"MainMenuScene.h"
 	"SceneManager.h"
 	"Button.h"
 
-1454683620 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+1454712860 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
 	<SDL.h>
-	"FirstLevel.h"
-	"SecondLevel.h"
+	"LevelManager.h"
 	"Engine.h"
 	"Button.h"
 
@@ -564,13 +563,13 @@
 1454606375 source:c:\miniclip\game\miniclip\src\graphics\button.cpp
 	"Button.h"
 
-1454694551 c:\miniclip\game\miniclip\include\levels\secondlevel.h
+1454712310 c:\miniclip\game\miniclip\include\levels\secondlevel.h
 	"Level.h"
 
 1454678372 source:c:\miniclip\game\miniclip\src\graphics\scene\scenemanager.cpp
 	"SceneManager.h"
 
-1454678639 c:\miniclip\game\miniclip\include\graphics\scene\scenemanager.h
+1454712700 c:\miniclip\game\miniclip\include\graphics\scene\scenemanager.h
 	<iostream>
 	"Engine.h"
 	"MainMenuScene.h"
@@ -604,4 +603,16 @@
 
 1454705661 c:\miniclip\game\miniclip\include\graphics\modifiers\moveymodifier.h
 	"BaseModifier.h"
+
+1454709218 c:\miniclip\game\miniclip\include\ruler.h
+	"Level.h"
+
+1454714409 c:\miniclip\game\miniclip\include\levels\levelmanager.h
+	<iostream>
+	<vector>
+	"FirstLevel.h"
+	"SecondLevel.h"
+
+1454714446 source:c:\miniclip\game\miniclip\src\levelmanager.cpp
+	"LevelManager.h"
 

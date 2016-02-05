@@ -3,8 +3,7 @@
 
 #include <SDL.h>
 
-#include "FirstLevel.h"
-#include "SecondLevel.h"
+#include "LevelManager.h"
 #include "Engine.h"
 #include "Button.h"
 

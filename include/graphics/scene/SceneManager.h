@@ -32,7 +32,7 @@ class SceneManager
         SceneManager();
         ~SceneManager();
 
-        static SceneManager *instance;
+        static SceneManager* instance;
         MainMenuScene* mainmenuScene;
         GameScene* gameScene;
 

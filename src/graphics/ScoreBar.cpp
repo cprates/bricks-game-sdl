@@ -1,7 +1,7 @@
 #include "ScoreBar.h"
 
-const string ScoreBar::TIMERBAR_FRAME_FILE_PATH = "scorebar_frame.png";
-const string ScoreBar::TIMERBAR_SHAFT_FILE_PATH = "scorebar_shaft.png";
+const string ScoreBar::TIMERBAR_FRAME_FILE_PATH = "resources/scorebar_frame.png";
+const string ScoreBar::TIMERBAR_SHAFT_FILE_PATH = "resources/scorebar_shaft.png";
 
 ScoreBar::ScoreBar(float maxScore, int x, int y, int width, int height, SDL_Renderer* renderer) :
     Sprite(TIMERBAR_FRAME_FILE_PATH, x, y, width, height, renderer),

@@ -11,6 +11,7 @@ class SecondLevel : public Level
             nColours = 5;
             newColumnTime = 6;
             scoreToFinish = 120;
+            levelID = 2;
         }
     private:
 };

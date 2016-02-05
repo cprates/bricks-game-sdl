@@ -1,7 +1,7 @@
 #include "Grid.h"
 #include <cmath>
 
-const std::string Grid::BLOCK_IMAGE_PATH = "block.png";
+const std::string Grid::BLOCK_IMAGE_PATH = "resources/block.png";
 
 Grid::Grid(int x, int y, short width, short height, short blockWidth, short blockHeight, GameScene* parent, SDL_Renderer* renderer, bool wild) :
     Entity(x, y, width*blockWidth, height*blockHeight, renderer, wild),
@@ -37,6 +37,8 @@ void Grid::build(GameMatrix* gm) {
         gridImage = SDL_CreateTexture(this->entityRenderer, SDL_PIXELFORMAT_RGBA8888,
             SDL_TEXTUREACCESS_TARGET, this->rect.w, this->rect.h);
     }
+    SDL_SetRenderDrawColor(this->entityRenderer, 255, 255, 255, 20);
+    SDL_SetTextureBlendMode(gridImage, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderTarget(this->entityRenderer, gridImage);
 	SDL_RenderClear(this->entityRenderer);
 

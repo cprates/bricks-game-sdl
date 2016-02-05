@@ -1,7 +1,7 @@
 #include "TimerBar.h"
 
-const string TimerBar::TIMERBAR_FRAME_FILE_PATH = "timerbar_frame.png";
-const string TimerBar::TIMERBAR_SHAFT_FILE_PATH = "timerbar_shaft.png";
+const string TimerBar::TIMERBAR_FRAME_FILE_PATH = "resources/timerbar_frame.png";
+const string TimerBar::TIMERBAR_SHAFT_FILE_PATH = "resources/timerbar_shaft.png";
 
 TimerBar::TimerBar(unsigned timeout, int x, int y, int width, int height, GameScene* parent, SDL_Renderer* renderer) :
     Sprite(TIMERBAR_FRAME_FILE_PATH, x, y, width, height, renderer),

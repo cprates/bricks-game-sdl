@@ -11,6 +11,7 @@ class FirstLevel : public Level
             nColours = 4;
             newColumnTime = 10;
             scoreToFinish = 50;
+            levelID = 1;
         }
     private:
 };

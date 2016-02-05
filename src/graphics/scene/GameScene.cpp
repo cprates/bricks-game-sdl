@@ -5,7 +5,9 @@
 #include "AlphaModifier.h"
 #include "MoveYModifier.h"
 
+const string GameScene::BACKGROUND_FILE_PATH = "resources/game_background.png";
 const string GameScene::GAMEOVER_FILE_PATH = "resources/game_over.png";
+const string GameScene::LEVELCOMPLETED_FILE_PATH = "resources/level_completed.png";
 
 GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     Scene(renderer),
@@ -17,12 +19,20 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     gameOver(false),
     pauseButton(NULL),
     resumeButton(NULL),
-    gameOverSprite(NULL)
+    nextLevelButton(NULL),
+    gameOverSprite(NULL),
+    levelCompletedprite(NULL)
 {
-    int width  = 480;
-    int height = 180;
+    Sprite* bg = new Sprite(BACKGROUND_FILE_PATH, 0, 0, engine->getScreenWidth(), engine->getScreenHeight(), renderer);
+    attachChild(bg);
+
+    int width  = 470;
+    int height = 190;
     gameOverSprite = new Sprite(GAMEOVER_FILE_PATH,
-    engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
+        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
+
+    levelCompletedprite = new Sprite(LEVELCOMPLETED_FILE_PATH,
+        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
 
     this->genLogicMatrix(&level);
     this->graphicMatrix.build(&this->logicMatrix);
@@ -41,11 +51,17 @@ GameScene::~GameScene()
     detatchEntity(scoreBar);
     detatchEntity(pauseButton);
     detatchEntity(resumeButton);
+    detatchEntity(nextLevelButton);
+    detatchEntity(gameOverSprite);
+    detatchEntity(levelCompletedprite);
 
-    delete this->timerBar;
-    delete this->scoreBar;
-    delete this->pauseButton;
-    delete this->resumeButton;
+    delete timerBar;
+    delete scoreBar;
+    delete pauseButton;
+    delete resumeButton;
+    delete nextLevelButton;
+    delete gameOverSprite;
+    delete levelCompletedprite;
 }
 
 
@@ -76,31 +92,36 @@ void GameScene::setButtons() {
     short buttonHeight = 35;
     unsigned buttonX = 820;
 
+    //TODO: need a resource manager...
     Button<DummyData, GameScene>* homeButton = new Button<DummyData, GameScene>
-        ("home_button.png", buttonX, 50, buttonWidth, buttonHeight, dm, this, renderer, true);
+        ("resources/home_button.png", buttonX, 50, buttonWidth, buttonHeight, dm, this, renderer, true);
     homeButton->setClickCallback(&GameScene::buttonHomeCallback);
     attachChild(homeButton);
 
     Button<DummyData, GameScene>* resetButton = new Button<DummyData, GameScene>
-        ("restart_button.png", buttonX, 95, buttonWidth, buttonHeight, dm, this, renderer, true);
+        ("resources/restart_button.png", buttonX, 95, buttonWidth, buttonHeight, dm, this, renderer, true);
     resetButton->setClickCallback(&GameScene::buttonResetCallback);
     attachChild(resetButton);
 
     pauseButton = new Button<DummyData, GameScene>
-        ("pause_button.png", buttonX, 140, buttonWidth, buttonHeight, dm, this, renderer);
+        ("resources/pause_button.png", buttonX, 140, buttonWidth, buttonHeight, dm, this, renderer);
     pauseButton->setClickCallback(&GameScene::buttonPauseCallback);
     attachChild(pauseButton);
 
     resumeButton = new Button<DummyData, GameScene>
-        ("resume_button.png", buttonX, 140, buttonWidth, buttonHeight, dm, this, renderer);
+        ("resources/resume_button.png", buttonX, 140, buttonWidth, buttonHeight, dm, this, renderer);
     resumeButton->setClickCallback(&GameScene::buttonResumeCallback);
     resumeButton->setVisible(false);
     attachChild(resumeButton);
 
     Button<DummyData, GameScene>* pushgridButton = new Button<DummyData, GameScene>
-        ("pushgrid_button.png", buttonX, 185, buttonWidth, buttonHeight, dm, this, renderer, true);
+        ("resources/pushgrid_button.png", buttonX, 185, buttonWidth, buttonHeight, dm, this, renderer, true);
     pushgridButton->setClickCallback(&GameScene::buttonPushGridCallback);
     attachChild(pushgridButton);
+
+    nextLevelButton = new Button<DummyData, GameScene>
+        ("resources/nextlevel_button.png", 400, 430, 100, 100, dm, this, renderer);
+    nextLevelButton->setClickCallback(&GameScene::buttonNextLevelCallback);
 }
 
 void GameScene::genLogicMatrix(Level* level) {
@@ -122,9 +143,13 @@ void GameScene::gridClickEventCallback(int x, int y) {
             // SEMPRE SEGUIDAS PORQUE O build() ACTUALIZA O Grid.matrixWidth. Se houver um realoc e este não for actualizado
             // as coordenadas dos clicks vao ficar desalinhadas
             int score = logicMatrix.reallocElements();
-            cout << "Score: " << score << endl;
+            ruler.incrementScore(score);
             graphicMatrix.build(&logicMatrix);
             scoreBar->incrementScore(score);
+
+            if(ruler.levelCompleted(&level)) {
+                onLevelCompleted();
+            }
         }
         else if(adjacentTwins.size() > 0) {
             // restore element
@@ -151,9 +176,12 @@ void GameScene::onUpdate(unsigned elapsedTime) {
 void GameScene::reset() {
     timerBar->reset();
     scoreBar->reset();
+    ruler.reset();
     genLogicMatrix(&level);
-    graphicMatrix.build(&this->logicMatrix);
+    graphicMatrix.build(&logicMatrix);
     detatchEntity(gameOverSprite);
+    detatchEntity(levelCompletedprite);
+    detatchEntity(nextLevelButton);
     paused = false;
     gameOver = false;
 }
@@ -174,6 +202,18 @@ void GameScene::onGameOver() {
     gameOver = true;
     gameOverSprite->addModifier(new AlphaModifier(0, 255, 0.3));
     attachChild(gameOverSprite);
+}
+
+void GameScene::onLevelCompleted() {
+    timerBar->pause();
+    gameOver = true;
+    levelCompletedprite->addModifier(new AlphaModifier(0, 255, 0.5));
+    attachChild(levelCompletedprite);
+    // is it the last one?!
+    if(level.getLevelID() < LevelManager::getInstance()->countLevels()) {
+        nextLevelButton->addModifier(new AlphaModifier(0, 255, 0.5));
+        attachChild(nextLevelButton);
+    }
 }
 
 void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
@@ -209,5 +249,10 @@ void GameScene::buttonResumeCallback(Entity* button, DummyData* dm) {
         graphicMatrix.setVisible(true);
     }
 }
+
+void GameScene::buttonNextLevelCallback(Entity* button, DummyData* dm) {
+    changeLevel(*LevelManager::getInstance()->getLevel(level.getLevelID() + 1));
+}
+
 
 
