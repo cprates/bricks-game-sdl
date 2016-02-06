@@ -41,14 +41,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="../../i686-w64-mingw32/include/SDL2" />
+			<Add directory="include/graphics/modifiers" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image" />
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf" />
 			<Add directory="../../i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/GameMatrix.h" />
 		<Unit filename="include/MatrixCol.h" />
 		<Unit filename="include/MatrixElement.h" />
+		<Unit filename="include/Ruler.h" />
 		<Unit filename="include/colours/BlackColour.h" />
 		<Unit filename="include/colours/BlueColour.h" />
 		<Unit filename="include/colours/Colour.h" />
@@ -63,25 +65,35 @@
 		<Unit filename="include/graphics/IOListener.h" />
 		<Unit filename="include/graphics/ScoreBar.h" />
 		<Unit filename="include/graphics/Sprite.h" />
+		<Unit filename="include/graphics/Text.h" />
 		<Unit filename="include/graphics/TimerBar.h" />
+		<Unit filename="include/graphics/modifiers/AlphaModifier.h" />
+		<Unit filename="include/graphics/modifiers/BaseModifier.h" />
+		<Unit filename="include/graphics/modifiers/MoveXModifier.h" />
+		<Unit filename="include/graphics/modifiers/MoveYModifier.h" />
 		<Unit filename="include/graphics/scene/GameScene.h" />
 		<Unit filename="include/graphics/scene/MainMenuScene.h" />
 		<Unit filename="include/graphics/scene/Scene.h" />
+		<Unit filename="include/graphics/scene/SceneManager.h" />
 		<Unit filename="include/levels/FirstLevel.h" />
 		<Unit filename="include/levels/Level.h" />
+		<Unit filename="include/levels/LevelManager.h" />
 		<Unit filename="include/levels/SecondLevel.h" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameMatrix.cpp" />
+		<Unit filename="src/LevelManager.cpp" />
 		<Unit filename="src/MatrixCol.cpp" />
 		<Unit filename="src/graphics/Engine.cpp" />
 		<Unit filename="src/graphics/Entity.cpp" />
 		<Unit filename="src/graphics/Grid.cpp" />
 		<Unit filename="src/graphics/ScoreBar.cpp" />
 		<Unit filename="src/graphics/Sprite.cpp" />
+		<Unit filename="src/graphics/Text.cpp" />
 		<Unit filename="src/graphics/TimerBar.cpp" />
 		<Unit filename="src/graphics/scene/GameScene.cpp" />
 		<Unit filename="src/graphics/scene/MainMenuScene.cpp" />
 		<Unit filename="src/graphics/scene/Scene.cpp" />
+		<Unit filename="src/graphics/scene/SceneManager.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
