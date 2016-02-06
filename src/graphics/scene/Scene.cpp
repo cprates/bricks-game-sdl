@@ -3,7 +3,8 @@
 Scene::Scene(SDL_Renderer* renderer):
     renderer(renderer),
     entityIDSeed(1),
-    lastClicked(NULL)
+    lastClicked(NULL),
+    lastOnFocus(NULL)
 {
 
 }
@@ -83,10 +84,17 @@ bool Scene::overIt(const int x, const int y, SDL_Rect* rect) {
 
 void Scene::onMouseMove(SDL_Event* ev) {
     Entity* target = searchTarget(ev->button.x, ev->button.y);
-    if(target != NULL) {
-        target->onMouseOver(ev);
+    if(target == NULL) return;
+
+    if(lastOnFocus != target) {
+        target->onFocusChange(ev, true);
+        if(lastOnFocus != NULL)
+            lastOnFocus->onFocusChange(ev, false);
+        lastOnFocus = target;
     }
+    target->onMouseOver(ev);
 }
+
 void Scene::onMouseButton(SDL_Event* ev) {
     Entity* target = searchTarget(ev->button.x, ev->button.y);
     if(target != NULL) {

@@ -11,6 +11,8 @@ Entity::Entity(const int x, const int y, const int width, const int height, SDL_
     this->rect.y = y;
     this->rect.w = width;
     this->rect.h = height;
+
+    this->originalRect = rect;
 }
 
 Entity::~Entity()
@@ -88,12 +90,21 @@ void Entity::setPosY(int y) {
     this->rect.y = y;
 }
 
+void Entity::scaleSize(float factor) {
+    rect.w = originalRect.w * factor;
+    rect.h = originalRect.h * factor;
+}
+
 void Entity::onClick(SDL_Event* ev) {
     //cout << "Clicked: " << this->id << endl;
 }
 
 void Entity::onMouseOver(SDL_Event* ev) {
     //cout << "MouseOver: " << this->id << endl;
+}
+
+void Entity::onFocusChange(SDL_Event* ev, bool getFocus) {
+    //cout << "FocusChange: " << getFocus << endl;
 }
 
 void Entity::addModifier(BaseModifier* modifier) {

@@ -11,10 +11,14 @@ class Button: public Sprite
         Button(const string imgPath, int x, int y, int width, int height, T data, R* parent, SDL_Renderer* renderer, bool wild = false):
             Sprite(imgPath, x, y, width, height, renderer, wild),
             data(data),
-            parent(parent)
+            parent(parent),
+            borderColor({255, 0, 0, 255}),
+            drawBorder(false),
+            scaleFactor(1.1)
         {
             //ctor
         }
+
         virtual ~Button() {};
 
         void setClickCallback(ClickCallback callback) {
@@ -25,10 +29,22 @@ class Button: public Sprite
             (parent->*callback)(this, &data);
         }
 
+        virtual void onFocusChange(SDL_Event* ev, bool setFocus) {
+            if(setFocus) {
+                scaleSize(scaleFactor);
+            }
+            else {
+                scaleSize(1);
+            }
+        }
+
     private:
         T data;
         R* parent;
         ClickCallback callback;
+        SDL_Color borderColor;
+        bool drawBorder;
+        float scaleFactor;
 };
 
 #endif // BUTTON_H

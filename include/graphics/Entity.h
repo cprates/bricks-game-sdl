@@ -30,8 +30,10 @@ class Entity
         void setPosition(int x, int y);
         void setPosX(int x);
         void setPosY(int y);
+        void scaleSize(float factor);
         virtual void onClick(SDL_Event* ev);
         virtual void onMouseOver(SDL_Event* ev);
+        virtual void onFocusChange(SDL_Event* ev, bool getFocus);
         void addModifier(BaseModifier* modifier);
 
     protected:
@@ -39,6 +41,7 @@ class Entity
         // An Entity is wild when only the Scene have a reference to it
         bool wild;
         SDL_Rect rect;
+        SDL_Rect originalRect;
         SDL_Renderer* entityRenderer;
         vector<BaseModifier*> modifiersList;
 

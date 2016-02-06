@@ -461,14 +461,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1454448888 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
+1454766199 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
 	<iostream>
 	<vector>
 	<SDL.h>
 	"Entity.h"
 	"IOListener.h"
 
-1454718018 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454718045 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 	"SceneManager.h"
 	"Button.h"
@@ -485,14 +485,14 @@
 	"ScoreBar.h"
 	"Button.h"
 
-1454684939 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
+1454766790 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
-1454717859 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
+1454782619 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
 	"Entity.h"
 	"BaseModifier.h"
 
-1454705443 c:\miniclip\game\miniclip\include\graphics\entity.h
+1454782540 c:\miniclip\game\miniclip\include\graphics\entity.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -557,7 +557,7 @@
 	"Engine.h"
 	"Button.h"
 
-1454683684 c:\miniclip\game\miniclip\include\graphics\button.h
+1454783336 c:\miniclip\game\miniclip\include\graphics\button.h
 	"Sprite.h"
 
 1454606375 source:c:\miniclip\game\miniclip\src\graphics\button.cpp

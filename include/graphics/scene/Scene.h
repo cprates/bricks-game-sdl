@@ -32,6 +32,7 @@ class Scene : public IOListener
         vector<Entity*> childs;
         unsigned entityIDSeed;
         Entity* lastClicked;
+        Entity* lastOnFocus;
 
         Entity* searchTarget(const int x, const int y);
         bool overIt(const int x, const int y, SDL_Rect* rect);
