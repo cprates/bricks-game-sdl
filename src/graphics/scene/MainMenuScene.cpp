@@ -6,7 +6,7 @@
 const string MainMenuScene::BG_FILE_PATH = "resources/mainmenu_background.png";
 
 MainMenuScene::MainMenuScene(int width, int height, SDL_Renderer* renderer) :
-    Scene(renderer),
+    Scene(renderer, MAINMENU_SCENE),
     renderer(renderer)
 {
     Sprite* bg = new Sprite(BG_FILE_PATH, 0, 0,width, height, renderer, true);
@@ -31,5 +31,6 @@ MainMenuScene::~MainMenuScene()
 }
 
 void MainMenuScene::buttonClickCallback(Entity* button, Level* level) {
-    SceneManager::getInstance()->loadGameScene(*level);
+    //SceneManager::getInstance()->loadGameScene(*level);
+    SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, level);
 }

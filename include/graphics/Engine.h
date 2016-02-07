@@ -26,16 +26,19 @@ class Engine
         bool init();
         void start();
         void setScene(Scene* scene);
+        void setSubScene(Scene* scene);
         SDL_Renderer* getRenderer();
         void setIOListener(IOListener* listener);
         SDL_Texture* renderText(const string text, short fontSize, SDL_Color colour);
         int getScreenWidth();
         int getScreenHeight();
+        void detachSubScene();
 
     private:
         SDL_Window* window;
         SDL_Renderer* renderer;
         Scene* scene;
+        Scene* subScene; // useful for transitions between scenes
         IOListener* ioListener;
         bool shutdown;
         int wWidth, wHeight;
@@ -43,6 +46,7 @@ class Engine
         int fpsRate;
         // 1 tick = 1 ms
         unsigned int ticksPerFrame;
+        bool needDetachSubScene;
 
         void handleIO(SDL_Event* ev);
 };

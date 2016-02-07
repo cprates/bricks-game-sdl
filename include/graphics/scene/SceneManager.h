@@ -1,12 +1,16 @@
 #ifndef SCENEMANAGER_H
 #define SCENEMANAGER_H
 
+#define MAINMENU_SCENE        0
+#define GAME_SCENE            1
+#define LOADING_SCENE         2
+
 #include <iostream>
 
 #include "Engine.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
-
+#include "LoadingScene.h"
 
 
 class SceneManager
@@ -14,7 +18,11 @@ class SceneManager
     public:
         void prepare(unsigned screenWidth, unsigned screenHeight, Engine* engine);
         void loadMainMenuScene();
-        void loadGameScene(Level level);
+        void loadGameScene();
+        void loadLoadingScene(int nextScene);
+        void loadLoadingScene(int nextScene, Level* level);
+        void changeScene();
+        void detachLoadingScene();
 
         static SceneManager* getInstance()
         {
@@ -28,6 +36,8 @@ class SceneManager
         unsigned screenWidth;
         unsigned screenHeight;
         Engine* engine;
+        int nextScene;
+        Level* level;
 
         SceneManager();
         ~SceneManager();
@@ -35,6 +45,7 @@ class SceneManager
         static SceneManager* instance;
         MainMenuScene* mainmenuScene;
         GameScene* gameScene;
+        LoadingScene* loadingScene;
 
 };
 

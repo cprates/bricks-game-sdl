@@ -1,6 +1,7 @@
 #include "Scene.h"
 
-Scene::Scene(SDL_Renderer* renderer):
+Scene::Scene(SDL_Renderer* renderer, int sceneID):
+    sceneID(sceneID),
     renderer(renderer),
     entityIDSeed(1),
     lastClicked(NULL),
@@ -18,6 +19,10 @@ Scene::~Scene()
             delete *it;
         }
     }
+}
+
+int Scene::getSceneID() {
+    return sceneID;
 }
 
 
@@ -57,7 +62,6 @@ bool Scene::detatchEntity(Entity* entity) {
         this->childs.erase(it);
         return true;
     }
-
     return false;
 }
 

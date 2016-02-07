@@ -7,13 +7,15 @@ Engine::Engine(const int windowWidth, const int windowHeight, const string windo
     window(NULL),
     renderer(NULL),
     scene(NULL),
+    subScene(NULL),
     ioListener(NULL),
     shutdown(false),
     wWidth(windowWidth),
     wHeight(windowHeight),
     wTitle(windowTitle),
     fpsRate(fps),
-    ticksPerFrame(1000 / fpsRate)
+    ticksPerFrame(1000 / fpsRate),
+    needDetachSubScene(false)
 {
 }
 
@@ -86,16 +88,24 @@ void Engine::start() {
     SDL_Event e;
 
     while(!shutdown) {
+        if(needDetachSubScene) {
+            subScene = NULL;
+            needDetachSubScene = false;
+        }
         this->handleIO(&e);
 
         SDL_RenderClear( this->renderer );
         // Update and Draw Scene
         if(this->scene != NULL) {
             this->scene->onUpdate(SDL_GetTicks() - elapsedTime);
-            elapsedTime = SDL_GetTicks();
             this->scene->onDraw(this->renderer);
         }
-        SDL_RenderPresent( this->renderer );
+        if(this->subScene != NULL) {
+            this->subScene->onUpdate(SDL_GetTicks() - elapsedTime);
+            this->subScene->onDraw(this->renderer);
+        }
+        elapsedTime = SDL_GetTicks();
+        SDL_RenderPresent(this->renderer);
 
         // Limit FPS Rate
         elapsedTicks = SDL_GetTicks() - ticksCounter;
@@ -113,6 +123,10 @@ void Engine::setScene(Scene* scene) {
     this->scene = scene;
 }
 
+void Engine::setSubScene(Scene* scene) {
+    this->subScene = scene;
+}
+
 SDL_Renderer* Engine::getRenderer() {
     return this->renderer;
 }
@@ -127,6 +141,10 @@ int Engine::getScreenWidth() {
 
 int Engine::getScreenHeight() {
     return this->wHeight;
+}
+
+void Engine::detachSubScene() {
+    needDetachSubScene = true;
 }
 
 void Engine::handleIO(SDL_Event* ev) {

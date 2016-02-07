@@ -10,7 +10,7 @@ const string GameScene::GAMEOVER_FILE_PATH = "resources/game_over.png";
 const string GameScene::LEVELCOMPLETED_FILE_PATH = "resources/level_completed.png";
 
 GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
-    Scene(renderer),
+    Scene(renderer, GAME_SCENE),
     logicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT),
     graphicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT, this, renderer),
     engine(engine),
@@ -221,12 +221,13 @@ void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
 }
 
 void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
-    SceneManager::getInstance()->loadMainMenuScene();
+    SceneManager::getInstance()->loadLoadingScene(MAINMENU_SCENE);
 }
 
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
     if(!paused && !gameOver) {
         timerBarTimeoutCallback();
+        timerBar->start();
     }
 }
 

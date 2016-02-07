@@ -72,6 +72,7 @@
 		<Unit filename="include/graphics/modifiers/MoveXModifier.h" />
 		<Unit filename="include/graphics/modifiers/MoveYModifier.h" />
 		<Unit filename="include/graphics/scene/GameScene.h" />
+		<Unit filename="include/graphics/scene/LoadingScene.h" />
 		<Unit filename="include/graphics/scene/MainMenuScene.h" />
 		<Unit filename="include/graphics/scene/Scene.h" />
 		<Unit filename="include/graphics/scene/SceneManager.h" />
@@ -91,6 +92,7 @@
 		<Unit filename="src/graphics/Text.cpp" />
 		<Unit filename="src/graphics/TimerBar.cpp" />
 		<Unit filename="src/graphics/scene/GameScene.cpp" />
+		<Unit filename="src/graphics/scene/LoadingScene.cpp" />
 		<Unit filename="src/graphics/scene/MainMenuScene.cpp" />
 		<Unit filename="src/graphics/scene/Scene.cpp" />
 		<Unit filename="src/graphics/scene/SceneManager.cpp" />
