@@ -51,6 +51,7 @@ class GameScene : public Scene
         Button<DummyData, GameScene>* pauseButton;
         Button<DummyData, GameScene>* resumeButton;
         Button<DummyData, GameScene>* nextLevelButton;
+        Button<DummyData, GameScene>* nextLevelOnGOButton;
         Sprite* gameOverSprite;
         Sprite* levelCompletedprite;
         Text* levelTitle;

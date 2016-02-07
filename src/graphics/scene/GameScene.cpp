@@ -22,6 +22,7 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     pauseButton(NULL),
     resumeButton(NULL),
     nextLevelButton(NULL),
+    nextLevelOnGOButton(NULL),
     gameOverSprite(NULL),
     levelCompletedprite(NULL)
 {
@@ -58,6 +59,7 @@ GameScene::~GameScene()
     detatchEntity(pauseButton);
     detatchEntity(resumeButton);
     detatchEntity(nextLevelButton);
+    detatchEntity(nextLevelOnGOButton);
     detatchEntity(gameOverSprite);
     detatchEntity(levelCompletedprite);
 
@@ -66,6 +68,7 @@ GameScene::~GameScene()
     delete pauseButton;
     delete resumeButton;
     delete nextLevelButton;
+    delete nextLevelOnGOButton;
     delete gameOverSprite;
     delete levelCompletedprite;
 }
@@ -128,6 +131,10 @@ void GameScene::setButtons() {
     nextLevelButton = new Button<DummyData, GameScene>
         ("resources/nextlevel_button.png", 400, 430, 100, 100, dm, this, renderer);
     nextLevelButton->setClickCallback(&GameScene::buttonNextLevelCallback);
+
+    nextLevelOnGOButton = new Button<DummyData, GameScene>
+        ("resources/restartgo_button.png", 400, 430, 100, 100, dm, this, renderer);
+    nextLevelOnGOButton->setClickCallback(&GameScene::buttonResetCallback);
 }
 
 void GameScene::genLogicMatrix(Level* level) {
@@ -186,6 +193,7 @@ void GameScene::reset() {
     genLogicMatrix(&level);
     graphicMatrix.build(&logicMatrix);
     detatchEntity(gameOverSprite);
+    detatchEntity(nextLevelOnGOButton);
     detatchEntity(levelCompletedprite);
     detatchEntity(nextLevelButton);
     paused = false;
@@ -213,6 +221,8 @@ void GameScene::onGameOver() {
     gameOver = true;
     gameOverSprite->addModifier(new AlphaModifier(0, 255, 0.3));
     attachChild(gameOverSprite);
+    nextLevelOnGOButton->addModifier(new AlphaModifier(0, 255, 0.3));
+    attachChild(nextLevelOnGOButton);
 }
 
 void GameScene::onLevelCompleted() {
@@ -238,6 +248,8 @@ void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
     if(!paused && !gameOver) {
         timerBarTimeoutCallback();
+    }
+    if(!gameOver) {
         timerBar->start();
     }
 }
