@@ -12,6 +12,7 @@ class FirstLevel : public Level
             newColumnTime = 10;
             scoreToFinish = 50;
             levelID = 1;
+            levelTitle = "Level 1";
         }
     private:
 };

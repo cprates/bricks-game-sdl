@@ -1,6 +1,8 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 
+#include <iostream>
+#include <string>
 
 class Level
 {
@@ -10,6 +12,7 @@ class Level
         unsigned getNewColumnTime() {return newColumnTime;}
         int getScoreToFinish() {return scoreToFinish;}
         short getLevelID() {return levelID;}
+        std::string getLevelTitle() {return levelTitle;}
 
     protected:
         short matrixCols; // initial value
@@ -17,6 +20,7 @@ class Level
         unsigned newColumnTime;
         int scoreToFinish;
         short levelID;
+        std::string levelTitle;
 
 };
 

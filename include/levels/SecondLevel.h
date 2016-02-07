@@ -12,6 +12,7 @@ class SecondLevel : public Level
             newColumnTime = 6;
             scoreToFinish = 120;
             levelID = 2;
+            levelTitle = "Level 2";
         }
     private:
 };

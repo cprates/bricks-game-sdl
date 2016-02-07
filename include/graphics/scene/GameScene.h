@@ -8,6 +8,7 @@
 #include "TimerBar.h"
 #include "ScoreBar.h"
 #include "Button.h"
+#include "Text.h"
 
 class DummyData {};
 
@@ -17,6 +18,11 @@ class GameScene : public Scene
         static const string BACKGROUND_FILE_PATH;
         static const string GAMEOVER_FILE_PATH;
         static const string LEVELCOMPLETED_FILE_PATH;
+        //
+        static const SDL_Color LEVEL_TITLE_COLOUR;
+        static const short LEVEL_TITLE_SIZE = 30;
+        static const int LEVEL_TITLE_POSY = 70;
+        //
         static const short BLOCK_WIDTH    = 40;   // pixels
         static const short BLOCK_HEIGHT   = 40;   // pixels
         static const short GRID_WIDTH     = 15;   // max n blocks
@@ -47,6 +53,7 @@ class GameScene : public Scene
         Button<DummyData, GameScene>* nextLevelButton;
         Sprite* gameOverSprite;
         Sprite* levelCompletedprite;
+        Text* levelTitle;
 
         void initTimeBar();
         void initScoreBar();

@@ -8,6 +8,8 @@
 const string GameScene::BACKGROUND_FILE_PATH = "resources/game_background.png";
 const string GameScene::GAMEOVER_FILE_PATH = "resources/game_over.png";
 const string GameScene::LEVELCOMPLETED_FILE_PATH = "resources/level_completed.png";
+const SDL_Color GameScene::LEVEL_TITLE_COLOUR = SDL_Color({200, 200, 200, 255});
+
 
 GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     Scene(renderer, GAME_SCENE),
@@ -33,6 +35,10 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
 
     levelCompletedprite = new Sprite(LEVELCOMPLETED_FILE_PATH,
         engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
+
+    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
+    levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
+    attachChild(levelTitle);
 
     this->genLogicMatrix(&level);
     this->graphicMatrix.build(&this->logicMatrix);
@@ -195,6 +201,11 @@ void GameScene::changeLevel(Level level) {
     graphicMatrix.setVisible(true);
     pauseButton->setVisible(true);
     resumeButton->setVisible(false);
+
+    delete levelTitle;
+    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
+    levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
+    attachChild(levelTitle);
 }
 
 void GameScene::onGameOver() {
