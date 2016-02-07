@@ -35,11 +35,14 @@ class Entity
         virtual void onMouseOver(SDL_Event* ev);
         virtual void onFocusChange(SDL_Event* ev, bool getFocus);
         void addModifier(BaseModifier* modifier);
+        void setEnabled(bool enabled);
+        bool isEnabled();
 
     protected:
         bool visible;
         // An Entity is wild when only the Scene have a reference to it
         bool wild;
+        bool enabled; // ignor events link clicks when == false
         SDL_Rect rect;
         SDL_Rect originalRect;
         SDL_Renderer* entityRenderer;

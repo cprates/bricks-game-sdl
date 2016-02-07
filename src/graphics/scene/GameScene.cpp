@@ -4,27 +4,31 @@
 #include "Text.h"
 #include "AlphaModifier.h"
 #include "MoveYModifier.h"
+#include "MoveXModifier.h"
 
 const string GameScene::BACKGROUND_FILE_PATH = "resources/game_background.png";
 const string GameScene::GAMEOVER_FILE_PATH = "resources/game_over.png";
 const string GameScene::LEVELCOMPLETED_FILE_PATH = "resources/level_completed.png";
+const string GameScene::TRUCK_FILE_PATH = "resources/truck.png";
 const SDL_Color GameScene::LEVEL_TITLE_COLOUR = SDL_Color({200, 200, 200, 255});
 
 
 GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     Scene(renderer, GAME_SCENE),
     logicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT),
-    graphicMatrix(GRID_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT, this, renderer),
+    graphicMatrix(GRID_START_X_POS, GRID_Y_POS, GRID_WIDTH, GRID_HEIGHT, BLOCK_WIDTH, BLOCK_HEIGHT, this, renderer),
     engine(engine),
     level(level),
-    paused(false),
+    paused(true),
     gameOver(false),
+    truckRunning(false),
     pauseButton(NULL),
     resumeButton(NULL),
     nextLevelButton(NULL),
     nextLevelOnGOButton(NULL),
     gameOverSprite(NULL),
-    levelCompletedprite(NULL)
+    levelCompletedprite(NULL),
+    truckSprite(NULL)
 {
     Sprite* bg = new Sprite(BACKGROUND_FILE_PATH, 0, 0, engine->getScreenWidth(), engine->getScreenHeight(), renderer);
     attachChild(bg);
@@ -40,11 +44,20 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
     levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
     attachChild(levelTitle);
-
-    this->genLogicMatrix(&level);
-    this->graphicMatrix.build(&this->logicMatrix);
-    this->graphicMatrix.setEventCallback( &GameScene::gridClickEventCallback );
-    this->attachChild(&this->graphicMatrix);
+    //
+    genLogicMatrix(&level);
+    graphicMatrix.build(&this->logicMatrix);
+    graphicMatrix.setEventCallback( &GameScene::gridClickEventCallback );
+    graphicMatrix.setVisible(false);
+    attachChild(&graphicMatrix);
+    //
+    truckSprite = new Sprite(TRUCK_FILE_PATH, 0, 0, 710, 640, renderer);
+    attachChild(truckSprite);
+    MoveXModifier<GameScene>* mx = new MoveXModifier<GameScene>(-800, 0, 3);
+    mx->setCallback(&GameScene::truckStopCallback, this);
+    truckSprite->addModifier(mx);
+    truckSprite->setEnabled(false);
+    truckRunning = true;
 
     initTimeBar();
     initScoreBar();
@@ -62,6 +75,8 @@ GameScene::~GameScene()
     detatchEntity(nextLevelOnGOButton);
     detatchEntity(gameOverSprite);
     detatchEntity(levelCompletedprite);
+    detatchEntity(levelTitle);
+    detatchEntity(truckSprite);
 
     delete timerBar;
     delete scoreBar;
@@ -71,6 +86,8 @@ GameScene::~GameScene()
     delete nextLevelOnGOButton;
     delete gameOverSprite;
     delete levelCompletedprite;
+    delete levelTitle;
+    delete truckSprite;
 }
 
 
@@ -82,7 +99,6 @@ void GameScene::initTimeBar() {
     this->timerBar = new TimerBar(level.getNewColumnTime(), 580, 20, 180, 30, this, renderer);
     this->timerBar->setEventCallback(&GameScene::timerBarTimeoutCallback);
     this->attachChild(this->timerBar);
-    this->timerBar->start();
 }
 
 void GameScene::initScoreBar() {
@@ -196,16 +212,16 @@ void GameScene::reset() {
     detatchEntity(nextLevelOnGOButton);
     detatchEntity(levelCompletedprite);
     detatchEntity(nextLevelButton);
-    paused = false;
+    paused = true;
     gameOver = false;
 }
+
 
 void GameScene::changeLevel(Level level) {
     this->level = level;
     reset();
     scoreBar->setMaxScore(level.getScoreToFinish());
     timerBar->setTimeout(level.getNewColumnTime());
-    timerBar->resume();
     graphicMatrix.setVisible(true);
     pauseButton->setVisible(true);
     resumeButton->setVisible(false);
@@ -214,6 +230,15 @@ void GameScene::changeLevel(Level level) {
     levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
     levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
     attachChild(levelTitle);
+
+    //
+    graphicMatrix.setPosition(GRID_START_X_POS, GRID_Y_POS);
+    graphicMatrix.setVisible(false);
+    MoveXModifier<GameScene>* mx = new MoveXModifier<GameScene>(-800, 0, 2);
+    mx->setCallback(&GameScene::truckStopCallback, this);
+    truckSprite->addModifier(mx);
+    truckSprite->setEnabled(false);
+    truckRunning = true;
 }
 
 void GameScene::onGameOver() {
@@ -238,7 +263,8 @@ void GameScene::onLevelCompleted() {
 }
 
 void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
-    changeLevel(level);
+    if(!truckRunning)
+        changeLevel(level);
 }
 
 void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
@@ -248,19 +274,21 @@ void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
     if(!paused && !gameOver) {
         timerBarTimeoutCallback();
-    }
-    if(!gameOver) {
         timerBar->start();
+    }
+    if(gameOver) {
+        timerBar->pause();
     }
 }
 
 void GameScene::buttonPauseCallback(Entity* button, DummyData* dm) {
-    if(!gameOver) {
+    if(!gameOver && !paused) {
         paused = !paused;
         timerBar->pause(paused);
         button->setVisible(false);
         resumeButton->setVisible(true);
-        graphicMatrix.setVisible(false);
+        graphicMatrix.setEnabled(false);
+        graphicMatrix.addModifier(new AlphaModifier(255, 0, 0.2));
     }
 }
 
@@ -270,13 +298,25 @@ void GameScene::buttonResumeCallback(Entity* button, DummyData* dm) {
         timerBar->pause(paused);
         button->setVisible(false);
         pauseButton->setVisible(true);
-        graphicMatrix.setVisible(true);
+        graphicMatrix.setEnabled(true);
+        graphicMatrix.addModifier(new AlphaModifier(0, 255, 0.2));
     }
 }
 
 void GameScene::buttonNextLevelCallback(Entity* button, DummyData* dm) {
-    changeLevel(*LevelManager::getInstance()->getLevel(level.getLevelID() + 1));
+    Level* _level = LevelManager::getInstance()->getLevel(level.getLevelID() + 1);
+    SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, _level);
 }
 
+void GameScene::truckStopCallback() {
+    MoveXModifier<GameScene>* mx = new MoveXModifier<GameScene>(GRID_START_X_POS, GRID_X_POS, 1.5);
+    mx->setCallback(&GameScene::gridStopCallback, this);
+    graphicMatrix.addModifier(mx);
+    graphicMatrix.setVisible(true);
+}
 
-
+void GameScene::gridStopCallback() {
+    timerBar->start();
+    paused = false;
+    truckRunning = false;
+}

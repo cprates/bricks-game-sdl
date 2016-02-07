@@ -19,6 +19,7 @@ class Grid : public Entity
         typedef void (GameScene::* ClickCallback)(int, int);
         static const std::string BLOCK_IMAGE_PATH;
         void build(GameMatrix* matrix);
+        ClickCallback clickCallback;
 
         Grid(int x, int y, short width, short height, short blockWidth, short blockHeight,
              GameScene* parent, SDL_Renderer* renderer, bool wild = false);
@@ -27,7 +28,8 @@ class Grid : public Entity
         void onClick(SDL_Event* ev);
         void onMouseOver(SDL_Event* ev);
         void setEventCallback( ClickCallback callback );
-        ClickCallback clickCallback;
+        void setAlpha(short alpha);
+
 
 
     private:

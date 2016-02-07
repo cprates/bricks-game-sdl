@@ -4,6 +4,7 @@
 Entity::Entity(const int x, const int y, const int width, const int height, SDL_Renderer* renderer, const bool wild) :
     visible(true),
     wild(wild),
+    enabled(true),
     entityRenderer(renderer),
     id(0)
 {
@@ -110,4 +111,12 @@ void Entity::onFocusChange(SDL_Event* ev, bool getFocus) {
 void Entity::addModifier(BaseModifier* modifier) {
     this->modifiersList.push_back(modifier);
     modifier->setTarget(this);
+}
+
+void Entity::setEnabled(bool enabled) {
+    this->enabled = enabled;
+}
+
+bool Entity::isEnabled() {
+    return enabled;
 }

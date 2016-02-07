@@ -69,7 +69,8 @@ Entity* Scene::searchTarget(const int x, const int y) {
     // iterating from the end to give precedence from top to bottom
     vector<Entity*>::reverse_iterator it = this->childs.rbegin();
     for(; (it != this->childs.rend() && !overIt(x, y, (*it)->getRect())) ||
-          (it != this->childs.rend() && !(*it)->isVisible()) ; it++) {}
+          (it != this->childs.rend() && !(*it)->isVisible()) ||
+          (it != this->childs.rend() && !(*it)->isEnabled()) ; it++) {}
     if(it != this->childs.rend()) {
         return *it;
     }

@@ -14,7 +14,6 @@ class FirstLevel : public Level
             levelID = 1;
             levelTitle = "Level 1";
         }
-    private:
 };
 
 #endif // FIRSTLEVEL_H

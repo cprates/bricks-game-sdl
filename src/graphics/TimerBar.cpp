@@ -61,6 +61,7 @@ void TimerBar::start() {
 void TimerBar::reset() {
     this->counter = 0;
     this->paused = true;
+    timerBarShaft->setWidth(0);
 }
 
 void TimerBar::setEventCallback( TimeoutCallback callback ) {

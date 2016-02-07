@@ -6,7 +6,8 @@ SceneManager::SceneManager() :
     engine(NULL),
     nextScene(0),
     mainmenuScene(NULL),
-    gameScene(NULL)
+    gameScene(NULL),
+    loadingScene(NULL)
 {
 
 }

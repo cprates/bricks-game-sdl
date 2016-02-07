@@ -100,3 +100,9 @@ Grid::Coord Grid::textureCoordsToMatrixIdx(int x, int y) {
     return idx;
 }
 
+
+void Grid::setAlpha(short alpha) {
+    if(this->gridImage != NULL){
+        SDL_SetTextureAlphaMod(this->gridImage, alpha);
+    }
+}

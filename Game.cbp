@@ -80,6 +80,7 @@
 		<Unit filename="include/levels/Level.h" />
 		<Unit filename="include/levels/LevelManager.h" />
 		<Unit filename="include/levels/SecondLevel.h" />
+		<Unit filename="include/levels/ThirdLevel.h" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/GameMatrix.cpp" />
 		<Unit filename="src/LevelManager.cpp" />

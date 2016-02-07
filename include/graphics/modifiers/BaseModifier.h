@@ -23,7 +23,7 @@ class BaseModifier
             this->target = target;
         }
 
-        void onUpdate(const unsigned elapsedTime) {
+        virtual void onUpdate(const unsigned elapsedTime) {
             if(target == NULL || finished) return;
 
             float elapsedTimeMS = elapsedTime /1000.0;
@@ -51,9 +51,9 @@ class BaseModifier
     private:
         float duration, span, fromValue;
         float elapsedTime;
-        bool finished;
 
     protected:
+        bool finished;
         Entity* target;
 };
 

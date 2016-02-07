@@ -23,6 +23,12 @@ MainMenuScene::MainMenuScene(int width, int height, SDL_Renderer* renderer) :
         ("resources/secondLevelButton.png", 690, 250, 70, 70, *level, this, renderer, true);
     secondLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(secondLevelButton);
+
+    level = LevelManager::getInstance()->getLevel(3);
+    Button<Level, MainMenuScene>* thirdLevelButton = new Button<Level, MainMenuScene>
+        ("resources/thirdLevelButton.png", 515, 20, 70, 70, *level, this, renderer, true);
+    thirdLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
+    attachChild(thirdLevelButton);
 }
 
 MainMenuScene::~MainMenuScene()

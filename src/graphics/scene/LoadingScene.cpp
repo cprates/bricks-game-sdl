@@ -29,15 +29,15 @@ LoadingScene::~LoadingScene()
 }
 
 void LoadingScene::show() {
-    fromLeftSprite->addModifier(new MoveXModifier(-500, 0, DURATION));
-    fromRightSprite->addModifier(new MoveXModifier(900, 400, DURATION));
+    fromLeftSprite->addModifier(new MoveXModifier<LoadingScene>(-500, 0, DURATION));
+    fromRightSprite->addModifier(new MoveXModifier<LoadingScene>(900, 400, DURATION));
     counter = 0;
     step = 0;
 }
 
 void LoadingScene::hide() {
-    fromLeftSprite->addModifier(new MoveXModifier(0, -500, DURATION));
-    fromRightSprite->addModifier(new MoveXModifier(400, 900, DURATION));
+    fromLeftSprite->addModifier(new MoveXModifier<LoadingScene>(0, -500, DURATION));
+    fromRightSprite->addModifier(new MoveXModifier<LoadingScene>(400, 900, DURATION));
 
     SceneManager::getInstance()->changeScene();
 }

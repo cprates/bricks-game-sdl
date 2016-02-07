@@ -6,6 +6,7 @@
 
 #include "FirstLevel.h"
 #include "SecondLevel.h"
+#include "ThirdLevel.h"
 
 class LevelManager
 {
@@ -28,6 +29,7 @@ class LevelManager
         LevelManager() {
             levels.push_back(new FirstLevel);
             levels.push_back(new SecondLevel);
+            levels.push_back(new ThirdLevel);
         }
         ~LevelManager();
 };

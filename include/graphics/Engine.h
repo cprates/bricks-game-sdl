@@ -16,9 +16,9 @@ class Engine
 {
     public:
         static const string FONT_PATH;
-        static const short  RENDERER_BG_COLOUR_RED   = 0;
-        static const short  RENDERER_BG_COLOUR_GREEN = 0;
-        static const short  RENDERER_BG_COLOUR_BLUE  = 0;
+        static const short  RENDERER_BG_COLOUR_RED   = 150;
+        static const short  RENDERER_BG_COLOUR_GREEN = 150;
+        static const short  RENDERER_BG_COLOUR_BLUE  = 150;
         static const short  RENDERER_BG_COLOUR_ALPHA = 255;
 
         Engine(const int windowWidth, const int windowHeight, const string windowTitle, const int fps = 30);
