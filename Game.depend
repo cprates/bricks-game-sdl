@@ -116,16 +116,18 @@
 1454674230 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454856271 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454898790 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
+	"SoundManager.h"
 	<chrono>
 
-1454871482 c:\miniclip\game\miniclip\include\graphics\engine.h
+1454895774 c:\miniclip\game\miniclip\include\graphics\engine.h
 	<iostream>
 	<string>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
+	<SDL_mixer.h>
 	"Scene.h"
 	"IOListener.h"
 
@@ -468,7 +470,7 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454892048 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454892803 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 	"SceneManager.h"
 	"Button.h"
@@ -550,12 +552,14 @@
 1454707014 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
 
-1454878680 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+1454898623 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
 	"MainMenuScene.h"
 	"SceneManager.h"
 	"Button.h"
+	"SoundManager.h"
+	<iostream>
 
-1454712860 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+1454897754 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
 	<SDL.h>
 	"LevelManager.h"
 	"Engine.h"
@@ -634,4 +638,21 @@
 
 1454871206 c:\miniclip\game\miniclip\include\levels\thirdlevel.h
 	"Level.h"
+
+1451801791 c:\miniclip\i686-w64-mingw32\include\sdl2\sdl_mixer.h
+	"SDL_stdinc.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1454898671 c:\miniclip\game\miniclip\include\soundmanager.h
+	<iostream>
+	<SDL_mixer.h>
+
+1454898771 source:c:\miniclip\game\miniclip\src\soundmanager.cpp
+	"SoundManager.h"
+	<stdexcept>
 

@@ -1,7 +1,9 @@
 #include "MainMenuScene.h"
 #include "SceneManager.h"
 #include "Button.h"
+#include "SoundManager.h"
 
+#include <iostream>
 
 const string MainMenuScene::BG_FILE_PATH = "resources/mainmenu_background.png";
 
@@ -29,14 +31,15 @@ MainMenuScene::MainMenuScene(int width, int height, SDL_Renderer* renderer) :
         ("resources/thirdLevelButton.png", 515, 20, 70, 70, *level, this, renderer, true);
     thirdLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(thirdLevelButton);
+
+    SoundManager::getInstance()->playMusic();
 }
 
 MainMenuScene::~MainMenuScene()
 {
-
 }
 
 void MainMenuScene::buttonClickCallback(Entity* button, Level* level) {
-    //SceneManager::getInstance()->loadGameScene(*level);
     SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, level);
 }
+

@@ -45,12 +45,14 @@
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf" />
+			<Add option="-lSDL2_mixer" />
 			<Add directory="../../i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/GameMatrix.h" />
 		<Unit filename="include/MatrixCol.h" />
 		<Unit filename="include/MatrixElement.h" />
 		<Unit filename="include/Ruler.h" />
+		<Unit filename="include/SoundManager.h" />
 		<Unit filename="include/colours/BlackColour.h" />
 		<Unit filename="include/colours/BlueColour.h" />
 		<Unit filename="include/colours/Colour.h" />
@@ -85,6 +87,7 @@
 		<Unit filename="src/GameMatrix.cpp" />
 		<Unit filename="src/LevelManager.cpp" />
 		<Unit filename="src/MatrixCol.cpp" />
+		<Unit filename="src/SoundManager.cpp" />
 		<Unit filename="src/graphics/Engine.cpp" />
 		<Unit filename="src/graphics/Entity.cpp" />
 		<Unit filename="src/graphics/Grid.cpp" />

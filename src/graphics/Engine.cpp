@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "SoundManager.h"
 #include <chrono>
 
 const string Engine::FONT_PATH = "font/font.ttf";
@@ -26,6 +27,9 @@ Engine::~Engine()
 	SDL_DestroyWindow( window );
 	window = NULL;
 
+    SoundManager::getInstance()->close();
+
+    Mix_Quit();
     TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
@@ -35,7 +39,7 @@ Engine::~Engine()
 
 bool Engine::init()
 {
-	if( SDL_Init( SDL_INIT_VIDEO ) != 0 ) {
+	if( SDL_Init( SDL_INIT_VIDEO | SDL_INIT_AUDIO ) != 0 ) {
 		cout << "!!! SDL initialization Error." << endl;
 		cout << "!!! SDL Error: " << endl << SDL_GetError() << endl;
 		return false;
@@ -63,7 +67,7 @@ bool Engine::init()
     SDL_SetRenderDrawColor( this->renderer, RENDERER_BG_COLOUR_RED, RENDERER_BG_COLOUR_GREEN,
            RENDERER_BG_COLOUR_BLUE, RENDERER_BG_COLOUR_ALPHA );
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-    //Initialize SDL_img
+    // SDL_img
     int imgFlags = IMG_INIT_PNG;
     if( !( IMG_Init( imgFlags ) & imgFlags ) ) {
         cout << "!!! Error initializing SDL_image!" << endl;
@@ -71,11 +75,17 @@ bool Engine::init()
         return false;
     }
 
-     //Initialize SDL_ttf
+    // SDL_ttf
     if( TTF_Init() != 0 ) {
         cout << "!!! Error initializing SDL_ttf!" << endl;
         cout << "!!! SDL_ttf Error: " << endl << TTF_GetError() << endl;
         return false;
+    }
+
+    // SDL_mixer
+    if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ) {
+        cout << "!!! Error initializing SDL_mixer!" << endl;
+        cout << "!!! SDL_mixer Error: " << endl << Mix_GetError() << endl;
     }
 
 	return true;
