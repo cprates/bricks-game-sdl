@@ -41,7 +41,7 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     levelCompletedprite = new Sprite(LEVELCOMPLETED_FILE_PATH,
         engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
 
-    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
+    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine, true);
     levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
     attachChild(levelTitle);
     //
@@ -86,7 +86,7 @@ GameScene::~GameScene()
     delete nextLevelOnGOButton;
     delete gameOverSprite;
     delete levelCompletedprite;
-    delete levelTitle;
+    //delete levelTitle; it's wild
     delete truckSprite;
 }
 
@@ -226,8 +226,8 @@ void GameScene::changeLevel(Level level) {
     pauseButton->setVisible(true);
     resumeButton->setVisible(false);
 
-    delete levelTitle;
-    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine);
+    detatchEntity(levelTitle);
+    levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine, true);
     levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
     attachChild(levelTitle);
 
@@ -268,7 +268,8 @@ void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
 }
 
 void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
-    SceneManager::getInstance()->loadLoadingScene(MAINMENU_SCENE);
+    if(!truckRunning)
+        SceneManager::getInstance()->loadLoadingScene(MAINMENU_SCENE);
 }
 
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
