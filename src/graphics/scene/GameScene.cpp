@@ -222,7 +222,6 @@ void GameScene::changeLevel(Level level) {
     reset();
     scoreBar->setMaxScore(level.getScoreToFinish());
     timerBar->setTimeout(level.getNewColumnTime());
-    graphicMatrix.setVisible(true);
     pauseButton->setVisible(true);
     resumeButton->setVisible(false);
 
@@ -234,6 +233,8 @@ void GameScene::changeLevel(Level level) {
     //
     graphicMatrix.setPosition(GRID_START_X_POS, GRID_Y_POS);
     graphicMatrix.setVisible(false);
+    graphicMatrix.setAlpha(255);
+    graphicMatrix.setEnabled(true);
     MoveXModifier<GameScene>* mx = new MoveXModifier<GameScene>(-800, 0, 2);
     mx->setCallback(&GameScene::truckStopCallback, this);
     truckSprite->addModifier(mx);
@@ -314,6 +315,7 @@ void GameScene::truckStopCallback() {
     mx->setCallback(&GameScene::gridStopCallback, this);
     graphicMatrix.addModifier(mx);
     graphicMatrix.setVisible(true);
+    //graphicMatrix.setEnabled(true);
 }
 
 void GameScene::gridStopCallback() {

@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 static const unsigned SCREEN_WIDTH = 900;
 static const unsigned SCREEN_HEIGHT = 640;
 static const string GAME_TITLE = "Cargo Crush";

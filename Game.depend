@@ -100,7 +100,7 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454860068 source:c:\miniclip\game\miniclip\src\game.cpp
+1454956801 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
@@ -470,7 +470,7 @@
 	"Entity.h"
 	"IOListener.h"
 
-1454892803 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454957351 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 	"SceneManager.h"
 	"Button.h"
@@ -652,7 +652,7 @@
 	<iostream>
 	<SDL_mixer.h>
 
-1454898771 source:c:\miniclip\game\miniclip\src\soundmanager.cpp
+1454898860 source:c:\miniclip\game\miniclip\src\soundmanager.cpp
 	"SoundManager.h"
 	<stdexcept>
 
