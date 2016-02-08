@@ -70,6 +70,7 @@ void MainMenuScene::onLoad() {
 
 void MainMenuScene::buttonClickCallback(Entity* button, Level* level) {
     SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, level);
+    SoundManager::getInstance()->playClick();
 }
 
 void MainMenuScene::onMuteCallback(Entity* button, MainMenuSceneDummyData* dd) {

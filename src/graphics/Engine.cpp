@@ -1,5 +1,4 @@
 #include "Engine.h"
-#include "SoundManager.h"
 #include <chrono>
 
 const string Engine::FONT_PATH = "font/font.ttf";
@@ -26,8 +25,6 @@ Engine::~Engine()
 	renderer = NULL;
 	SDL_DestroyWindow( window );
 	window = NULL;
-
-    SoundManager::getInstance()->close();
 
     Mix_Quit();
     TTF_Quit();

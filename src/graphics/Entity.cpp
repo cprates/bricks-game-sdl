@@ -19,9 +19,9 @@ Entity::Entity(const int x, const int y, const int width, const int height, SDL_
 Entity::~Entity()
 {
     vector<BaseModifier*>::iterator it = modifiersList.begin();
-    for(; it != modifiersList.end(); it++) {
+    for(; it != modifiersList.end(); ) {
         delete *it;
-        modifiersList.erase(it);
+        it = modifiersList.erase(it);
     }
 }
 
@@ -111,6 +111,14 @@ void Entity::onFocusChange(SDL_Event* ev, bool getFocus) {
 void Entity::addModifier(BaseModifier* modifier) {
     this->modifiersList.push_back(modifier);
     modifier->setTarget(this);
+}
+
+void Entity::clearModifiers() {
+    vector<BaseModifier*>::iterator it = modifiersList.begin();
+    for(; it != modifiersList.end(); ) {
+        delete *it;
+        it = modifiersList.erase(it);
+    }
 }
 
 void Entity::setEnabled(bool enabled) {

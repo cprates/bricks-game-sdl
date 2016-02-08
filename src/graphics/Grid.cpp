@@ -8,9 +8,12 @@ Grid::Grid(int x, int y, short width, short height, short blockWidth, short bloc
     gridImage(NULL),
     blockRect({0 ,0 ,blockWidth ,blockHeight}),
     parent(parent),
-    matrixWidth(0)
+    matrixWidth(0),
+    drawBlockBorder(false)
 {
-    this->blockImage = new Sprite(BLOCK_IMAGE_PATH, 0, 0, blockRect.w, blockRect.h, renderer);
+    blockImage = new Sprite(BLOCK_IMAGE_PATH, 0, 0, blockRect.w, blockRect.h, renderer);
+    blockBorder.w = blockWidth;
+    blockBorder.h = blockHeight;
 }
 
 Grid::~Grid()
@@ -69,6 +72,12 @@ void Grid::onDraw(SDL_Renderer* renderer) {
         return;
     }
 	SDL_RenderCopyEx(renderer, this->gridImage, NULL, &this->rect, 0, NULL, SDL_FLIP_NONE);
+
+	if(drawBlockBorder) {
+        SDL_SetRenderDrawColor( renderer, BBORDER_RED, BBORDER_GREEN, BBORDER_BLUE, BBORDER_ALPHA );
+        SDL_RenderDrawRect( renderer, &blockBorder );
+	}
+
 #ifdef __DEBUG
     SDL_Rect outlineRect = { rect.x, rect.y, rect.w, rect.h};
     SDL_SetRenderDrawColor( renderer, 0xFF, 0x00, 0x00, 0xFF );
@@ -86,7 +95,15 @@ void Grid::onClick(SDL_Event* ev) {
 }
 
 void Grid::onMouseOver(SDL_Event* ev) {
-    //cout << "Mouse Over" << endl;
+    int col = (ev->button.x - this->rect.x) / this->blockRect.w;
+    int row = (ev->button.y - this->rect.y) / this->blockRect.h;
+
+    blockBorder.x = col * blockRect.w + rect.x;
+    blockBorder.y = row * blockRect.h + rect.y;
+}
+
+void Grid::onFocusChange(SDL_Event* ev, bool getFocus) {
+    drawBlockBorder = getFocus;
 }
 
 Grid::Coord Grid::textureCoordsToMatrixIdx(int x, int y) {

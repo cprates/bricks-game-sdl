@@ -93,7 +93,6 @@ GameScene::~GameScene()
 
 void GameScene::onLoad() {
     bool onMute = SoundManager::getInstance()->isOnMute();
-    cout << "onLoad: " << SoundManager::getInstance()->isOnMute() << endl;
     muteButton->setVisible(onMute);
     playMusicButton->setVisible(!onMute);
 }
@@ -196,6 +195,7 @@ void GameScene::gridClickEventCallback(int x, int y) {
             ruler.incrementScore(score);
             graphicMatrix.build(&logicMatrix);
             scoreBar->incrementScore(score);
+            SoundManager::getInstance()->playCrush();
 
             if(ruler.levelCompleted(&level)) {
                 onLevelCompleted();
@@ -270,6 +270,8 @@ void GameScene::onGameOver() {
     attachChild(gameOverSprite);
     nextLevelOnGOButton->addModifier(new AlphaModifier(0, 255, 0.3));
     attachChild(nextLevelOnGOButton);
+
+    SoundManager::getInstance()->playGameOver();
 }
 
 void GameScene::onLevelCompleted() {
@@ -282,26 +284,34 @@ void GameScene::onLevelCompleted() {
         nextLevelButton->addModifier(new AlphaModifier(0, 255, 0.5));
         attachChild(nextLevelButton);
     }
+
+    SoundManager::getInstance()->playLevelCompleted();
 }
 
 void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
     if(!truckRunning)
         changeLevel(level);
+
+    SoundManager::getInstance()->playClick();
 }
 
 void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
     if(!truckRunning)
         SceneManager::getInstance()->loadLoadingScene(MAINMENU_SCENE);
+
+    SoundManager::getInstance()->playClick();
 }
 
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
     if(!paused && !gameOver) {
         timerBarTimeoutCallback();
         timerBar->start();
+        SoundManager::getInstance()->playClick();
     }
     if(gameOver) {
         timerBar->pause();
     }
+
 }
 
 void GameScene::buttonPauseCallback(Entity* button, DummyData* dm) {
@@ -312,6 +322,8 @@ void GameScene::buttonPauseCallback(Entity* button, DummyData* dm) {
         resumeButton->setVisible(true);
         graphicMatrix.setEnabled(false);
         graphicMatrix.addModifier(new AlphaModifier(255, 0, 0.2));
+
+        SoundManager::getInstance()->playClick();
     }
 }
 
@@ -323,12 +335,16 @@ void GameScene::buttonResumeCallback(Entity* button, DummyData* dm) {
         pauseButton->setVisible(true);
         graphicMatrix.setEnabled(true);
         graphicMatrix.addModifier(new AlphaModifier(0, 255, 0.2));
+
+        SoundManager::getInstance()->playClick();
     }
 }
 
 void GameScene::buttonNextLevelCallback(Entity* button, DummyData* dm) {
     Level* _level = LevelManager::getInstance()->getLevel(level.getLevelID() + 1);
     SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, _level);
+
+    SoundManager::getInstance()->playClick();
 }
 
 void GameScene::truckStopCallback() {
@@ -336,7 +352,6 @@ void GameScene::truckStopCallback() {
     mx->setCallback(&GameScene::gridStopCallback, this);
     graphicMatrix.addModifier(mx);
     graphicMatrix.setVisible(true);
-    //graphicMatrix.setEnabled(true);
 }
 
 void GameScene::gridStopCallback() {

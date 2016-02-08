@@ -4,6 +4,7 @@
 
 #include "GameMatrix.h"
 #include "Engine.h"
+#include "SoundManager.h"
 #include "SceneManager.h"
 
 using namespace std;
@@ -19,6 +20,9 @@ int main( int argc, char* args[] ) {
     SceneManager::getInstance()->prepare(SCREEN_WIDTH, SCREEN_HEIGHT, &engine);
     SceneManager::getInstance()->loadMainMenuScene();
     engine.start();
+
+    SoundManager::getInstance()->close();
+    SceneManager::getInstance()->close();
 
     return 0;
 }

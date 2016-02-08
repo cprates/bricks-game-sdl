@@ -6,7 +6,7 @@ const string LoadingScene::FROMLEFT_FILE_PATH = "resources/fromleft.png";
 const string LoadingScene::FROMRIGHT_FILE_PATH = "resources/fromright.png";
 const float LoadingScene::DURATION = 0.8;
 const float LoadingScene::HIDE_TIME = 1000;
-const float LoadingScene::DONE_TIME = 1800;
+const float LoadingScene::DONE_TIME = 2000;
 
 LoadingScene::LoadingScene(Engine* engine, SDL_Renderer* renderer) :
     Scene(renderer, LOADING_SCENE),
@@ -29,6 +29,8 @@ LoadingScene::~LoadingScene()
 }
 
 void LoadingScene::show() {
+    fromLeftSprite->clearModifiers();
+    fromRightSprite->clearModifiers();
     fromLeftSprite->addModifier(new MoveXModifier<LoadingScene>(-500, 0, DURATION));
     fromRightSprite->addModifier(new MoveXModifier<LoadingScene>(900, 400, DURATION));
     counter = 0;

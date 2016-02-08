@@ -35,6 +35,7 @@ class Entity
         virtual void onMouseOver(SDL_Event* ev);
         virtual void onFocusChange(SDL_Event* ev, bool getFocus);
         void addModifier(BaseModifier* modifier);
+        void clearModifiers();
         void setEnabled(bool enabled);
         bool isEnabled();
 
