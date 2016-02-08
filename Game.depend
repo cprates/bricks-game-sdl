@@ -100,7 +100,7 @@
 1453840591 c:\miniclip\game\miniclip\include\colours\blackcolour.h
 	"Colour.h"
 
-1454956801 source:c:\miniclip\game\miniclip\src\game.cpp
+1454963269 source:c:\miniclip\game\miniclip\src\game.cpp
 	<string>
 	<iostream>
 	"GameMatrix.h"
@@ -116,7 +116,7 @@
 1454674230 source:c:\miniclip\game\miniclip\src\gamematrix.cpp
 	"GameMatrix.h"
 
-1454898790 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
+1454963099 source:c:\miniclip\game\miniclip\src\graphics\engine.cpp
 	"Engine.h"
 	"SoundManager.h"
 	<chrono>
@@ -463,14 +463,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1454792584 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
+1454964640 c:\miniclip\game\miniclip\include\graphics\scene\scene.h
 	<iostream>
 	<vector>
 	<SDL.h>
 	"Entity.h"
 	"IOListener.h"
 
-1454957351 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
+1454965850 source:c:\miniclip\game\miniclip\src\graphics\scene\gamescene.cpp
 	"GameScene.h"
 	"SceneManager.h"
 	"Button.h"
@@ -478,8 +478,9 @@
 	"AlphaModifier.h"
 	"MoveYModifier.h"
 	"MoveXModifier.h"
+	"SoundManager.h"
 
-1454870326 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
+1454965865 c:\miniclip\game\miniclip\include\graphics\scene\gamescene.h
 	"Engine.h"
 	"Ruler.h"
 	"GameMatrix.h"
@@ -489,7 +490,7 @@
 	"Button.h"
 	"Text.h"
 
-1454890659 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
+1454964632 source:c:\miniclip\game\miniclip\src\graphics\scene\scene.cpp
 	"Scene.h"
 
 1454865790 source:c:\miniclip\game\miniclip\src\graphics\entity.cpp
@@ -552,20 +553,20 @@
 1454707014 source:c:\miniclip\game\miniclip\src\graphics\scorebar.cpp
 	"ScoreBar.h"
 
-1454898623 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
+1454965836 source:c:\miniclip\game\miniclip\src\graphics\scene\mainmenuscene.cpp
 	"MainMenuScene.h"
 	"SceneManager.h"
 	"Button.h"
 	"SoundManager.h"
 	<iostream>
 
-1454897754 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
+1454964666 c:\miniclip\game\miniclip\include\graphics\scene\mainmenuscene.h
 	<SDL.h>
 	"LevelManager.h"
 	"Engine.h"
 	"Button.h"
 
-1454788318 c:\miniclip\game\miniclip\include\graphics\button.h
+1454962222 c:\miniclip\game\miniclip\include\graphics\button.h
 	"Sprite.h"
 
 1454606375 source:c:\miniclip\game\miniclip\src\graphics\button.cpp
@@ -574,10 +575,10 @@
 1454858702 c:\miniclip\game\miniclip\include\levels\secondlevel.h
 	"Level.h"
 
-1454878893 source:c:\miniclip\game\miniclip\src\graphics\scene\scenemanager.cpp
+1454964373 source:c:\miniclip\game\miniclip\src\graphics\scene\scenemanager.cpp
 	"SceneManager.h"
 
-1454855229 c:\miniclip\game\miniclip\include\graphics\scene\scenemanager.h
+1454962980 c:\miniclip\game\miniclip\include\graphics\scene\scenemanager.h
 	<iostream>
 	"Engine.h"
 	"MainMenuScene.h"
@@ -648,11 +649,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1454898671 c:\miniclip\game\miniclip\include\soundmanager.h
+1454964456 c:\miniclip\game\miniclip\include\soundmanager.h
 	<iostream>
 	<SDL_mixer.h>
 
-1454898860 source:c:\miniclip\game\miniclip\src\soundmanager.cpp
+1454965733 source:c:\miniclip\game\miniclip\src\soundmanager.cpp
 	"SoundManager.h"
 	<stdexcept>
+	<iostream>
 

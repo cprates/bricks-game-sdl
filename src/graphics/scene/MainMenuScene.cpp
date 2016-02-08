@@ -7,9 +7,10 @@
 
 const string MainMenuScene::BG_FILE_PATH = "resources/mainmenu_background.png";
 
-MainMenuScene::MainMenuScene(int width, int height, SDL_Renderer* renderer) :
+MainMenuScene::MainMenuScene(int width, int height, Engine* engine) :
     Scene(renderer, MAINMENU_SCENE),
-    renderer(renderer)
+    renderer(engine->getRenderer()),
+    engine(engine)
 {
     Sprite* bg = new Sprite(BG_FILE_PATH, 0, 0,width, height, renderer, true);
     attachChild(bg);
@@ -32,14 +33,55 @@ MainMenuScene::MainMenuScene(int width, int height, SDL_Renderer* renderer) :
     thirdLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(thirdLevelButton);
 
+
+    // sound
+    MainMenuSceneDummyData dd;
+    muteButton = new Button<MainMenuSceneDummyData, MainMenuScene>
+        ("resources/mute.png", 0, 5, 25, 25, dd, this, renderer);
+    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 0);
+    muteButton->setClickCallback(&MainMenuScene::onPlayMusicCallback);
+    muteButton->setVisible(false);
+    attachChild(muteButton);
+
+    playMusicButton = new Button<MainMenuSceneDummyData, MainMenuScene>
+        ("resources/nomute.png", 0, 5, 25, 25, dd, this, renderer);
+    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 0);
+    playMusicButton->setClickCallback(&MainMenuScene::onMuteCallback);
+    attachChild(playMusicButton);
+
+
     SoundManager::getInstance()->playMusic();
 }
 
 MainMenuScene::~MainMenuScene()
 {
+    detatchEntity(muteButton);
+    detatchEntity(playMusicButton);
+
+    delete muteButton;
+    delete playMusicButton;
+}
+
+void MainMenuScene::onLoad() {
+    bool onMute = SoundManager::getInstance()->isOnMute();
+    muteButton->setVisible(onMute);
+    playMusicButton->setVisible(!onMute);
 }
 
 void MainMenuScene::buttonClickCallback(Entity* button, Level* level) {
     SceneManager::getInstance()->loadLoadingScene(GAME_SCENE, level);
 }
 
+void MainMenuScene::onMuteCallback(Entity* button, MainMenuSceneDummyData* dd) {
+    muteButton->setVisible(true);
+    playMusicButton->setVisible(false);
+    SoundManager::getInstance()->setMute(true);
+    SoundManager::getInstance()->pauseMusic();
+}
+
+void MainMenuScene::onPlayMusicCallback(Entity* button, MainMenuSceneDummyData* dd) {
+    muteButton->setVisible(false);
+    playMusicButton->setVisible(true);
+    SoundManager::getInstance()->setMute(false);
+    SoundManager::getInstance()->resumeMusic();
+}

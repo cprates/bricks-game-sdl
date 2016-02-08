@@ -21,11 +21,14 @@ class SoundManager
         void playMusic();
         void pauseMusic();
         void resumeMusic();
+        void setMute(bool onMute);
+        bool isOnMute();
 
 
     private:
         static SoundManager* instance;
         Mix_Music* music;
+        bool onMute;
 
         SoundManager();
         ~SoundManager();

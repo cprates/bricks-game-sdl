@@ -14,6 +14,9 @@ SceneManager::SceneManager() :
 
 SceneManager::~SceneManager()
 {
+}
+
+void SceneManager::close() {
     engine->setScene(NULL);
     engine->setSubScene(NULL);
     engine->setIOListener(NULL);
@@ -32,8 +35,9 @@ void SceneManager::prepare(unsigned screenWidth, unsigned screenHeight, Engine* 
 
 void SceneManager::loadMainMenuScene() {
     if(mainmenuScene == NULL) {
-        mainmenuScene = new MainMenuScene(screenWidth, screenHeight, engine->getRenderer());
+        mainmenuScene = new MainMenuScene(screenWidth, screenHeight, engine);
     }
+    mainmenuScene->onLoad();
     engine->setIOListener(mainmenuScene);
     engine->setScene(mainmenuScene);
 }

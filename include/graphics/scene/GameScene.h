@@ -34,6 +34,7 @@ class GameScene : public Scene
 
         GameScene(Level level, Engine* engine, SDL_Renderer* renderer);
         virtual ~GameScene();
+        void onLoad();
         void gridClickEventCallback(int x, int y);
         void timerBarTimeoutCallback();
         void onUpdate(unsigned elapsedTime);
@@ -55,6 +56,8 @@ class GameScene : public Scene
         Button<DummyData, GameScene>* resumeButton;
         Button<DummyData, GameScene>* nextLevelButton;
         Button<DummyData, GameScene>* nextLevelOnGOButton;
+        Button<DummyData, GameScene>* muteButton;
+        Button<DummyData, GameScene>* playMusicButton;
         Sprite* gameOverSprite;
         Sprite* levelCompletedprite;
         Text* levelTitle;
@@ -74,6 +77,8 @@ class GameScene : public Scene
         void buttonNextLevelCallback(Entity* button, DummyData* dm);
         void truckStopCallback();
         void gridStopCallback();
+        void onPlayMusicCallback(Entity* button, DummyData* dd);
+        void onMuteCallback(Entity* button, DummyData* dd);
 
 };
 

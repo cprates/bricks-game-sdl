@@ -16,13 +16,16 @@ class Button: public Sprite
             drawBorder(false),
             scaleFactor(1.1)
         {
-            //ctor
         }
 
         virtual ~Button() {};
 
         void setClickCallback(ClickCallback callback) {
             this->callback = callback;
+        }
+
+        void setData(T data) {
+            this->data = data;
         }
 
         virtual void onClick(SDL_Event* ev) {

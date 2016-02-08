@@ -23,6 +23,7 @@ class SceneManager
         void loadLoadingScene(int nextScene, Level* level);
         void changeScene();
         void detachLoadingScene();
+        void close();
 
         static SceneManager* getInstance()
         {

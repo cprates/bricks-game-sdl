@@ -17,6 +17,7 @@ class Scene : public IOListener
 
         Scene(SDL_Renderer* renderer, int sceneID);
         virtual ~Scene();
+        virtual void onLoad() {}
         int getSceneID();
         virtual void onDraw(SDL_Renderer* renderer);
         virtual void onUpdate(unsigned elapsedTime);

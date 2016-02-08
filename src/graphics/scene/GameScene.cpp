@@ -5,6 +5,7 @@
 #include "AlphaModifier.h"
 #include "MoveYModifier.h"
 #include "MoveXModifier.h"
+#include "SoundManager.h"
 
 const string GameScene::BACKGROUND_FILE_PATH = "resources/game_background.png";
 const string GameScene::GAMEOVER_FILE_PATH = "resources/game_over.png";
@@ -90,6 +91,13 @@ GameScene::~GameScene()
     delete truckSprite;
 }
 
+void GameScene::onLoad() {
+    bool onMute = SoundManager::getInstance()->isOnMute();
+    cout << "onLoad: " << SoundManager::getInstance()->isOnMute() << endl;
+    muteButton->setVisible(onMute);
+    playMusicButton->setVisible(!onMute);
+}
+
 
 void GameScene::initTimeBar() {
     SDL_Color colour({255, 0, 0});
@@ -151,6 +159,19 @@ void GameScene::setButtons() {
     nextLevelOnGOButton = new Button<DummyData, GameScene>
         ("resources/restartgo_button.png", 400, 430, 100, 100, dm, this, renderer);
     nextLevelOnGOButton->setClickCallback(&GameScene::buttonResetCallback);
+
+    // sound
+    DummyData dd;
+    muteButton = new Button<DummyData, GameScene>("resources/mute.png", 0, 5, 25, 25, dd, this, renderer);
+    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 0);
+    muteButton->setClickCallback(&GameScene::onPlayMusicCallback);
+    muteButton->setVisible(false);
+    attachChild(muteButton);
+
+    playMusicButton = new Button<DummyData, GameScene>("resources/nomute.png", 0, 5, 25, 25, dd, this, renderer);
+    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 0);
+    playMusicButton->setClickCallback(&GameScene::onMuteCallback);
+    attachChild(playMusicButton);
 }
 
 void GameScene::genLogicMatrix(Level* level) {
@@ -322,4 +343,18 @@ void GameScene::gridStopCallback() {
     timerBar->start();
     paused = false;
     truckRunning = false;
+}
+
+void GameScene::onMuteCallback(Entity* button, DummyData* dd) {
+    muteButton->setVisible(true);
+    playMusicButton->setVisible(false);
+    SoundManager::getInstance()->setMute(true);
+    SoundManager::getInstance()->pauseMusic();
+}
+
+void GameScene::onPlayMusicCallback(Entity* button, DummyData* dd) {
+    muteButton->setVisible(false);
+    playMusicButton->setVisible(true);
+    SoundManager::getInstance()->setMute(false);
+    SoundManager::getInstance()->resumeMusic();
 }

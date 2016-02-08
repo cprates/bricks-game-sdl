@@ -1,11 +1,15 @@
 #include "SoundManager.h"
 #include <stdexcept>
 
+#include <iostream>
+using namespace std;
+
 SoundManager* SoundManager::instance = NULL;
 const std::string SoundManager::MUSIC_FILE_PATH = "resources/sound/music.ogg";
 
 SoundManager::SoundManager() :
-    music(NULL)
+    music(NULL),
+    onMute(false)
 {
     loadMusic();
 }
@@ -30,9 +34,22 @@ void SoundManager::playMusic() {
 }
 
 void SoundManager::pauseMusic() {
-
+    if(!Mix_PausedMusic()) {
+        Mix_PauseMusic();
+    }
 }
 
 void SoundManager::resumeMusic() {
-
+    if(Mix_PausedMusic()) {
+        Mix_ResumeMusic();
+    }
 }
+
+void SoundManager::setMute(bool onMute) {
+    this->onMute = onMute;
+}
+
+bool SoundManager::isOnMute() {
+    return this->onMute;
+}
+

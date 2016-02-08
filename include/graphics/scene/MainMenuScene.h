@@ -7,19 +7,25 @@
 #include "Engine.h"
 #include "Button.h"
 
+class MainMenuSceneDummyData {};
 
 class MainMenuScene : public Scene
 {
     public:
-        MainMenuScene(int width, int height, SDL_Renderer* renderer);
+        static const string BG_FILE_PATH;
+        MainMenuScene(int width, int height, Engine* engine);
         virtual ~MainMenuScene();
+        void onLoad();
 
     private:
-        static const string BG_FILE_PATH;
         SDL_Renderer* renderer;
         Engine* engine;
+        Button<MainMenuSceneDummyData, MainMenuScene>* muteButton;
+        Button<MainMenuSceneDummyData, MainMenuScene>* playMusicButton;
 
         void buttonClickCallback(Entity* button, Level* level);
+        void onPlayMusicCallback(Entity* button, MainMenuSceneDummyData* dd);
+        void onMuteCallback(Entity* button, MainMenuSceneDummyData* dd);
 };
 
 #endif // MAINMENUSCENE_H
