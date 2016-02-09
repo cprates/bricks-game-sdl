@@ -49,7 +49,7 @@ void SceneManager::loadGameScene() {
     else {
         gameScene->changeLevel(*level);
     }
-
+    gameScene->onLoad();
     engine->setScene(gameScene);
     engine->setIOListener(gameScene);
 }

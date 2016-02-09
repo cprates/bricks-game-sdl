@@ -12,7 +12,7 @@
 #include "GreenColour.h"
 #include "GreyColour.h"
 #include "YellowColour.h"
-#include "BlackColour.h"
+#include "PurpleColour.h"
 
 
 class MatrixCol

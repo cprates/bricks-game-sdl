@@ -12,7 +12,6 @@ class Button: public Sprite
             Sprite(imgPath, x, y, width, height, renderer, wild),
             data(data),
             parent(parent),
-            borderColor({255, 0, 0, 255}),
             drawBorder(false),
             scaleFactor(1.1)
         {
@@ -45,7 +44,6 @@ class Button: public Sprite
         T data;
         R* parent;
         ClickCallback callback;
-        SDL_Color borderColor;
         bool drawBorder;
         float scaleFactor;
 };

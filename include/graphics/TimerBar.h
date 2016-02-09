@@ -7,12 +7,6 @@ class GameScene;
 
 class TimerBar : public Sprite
 {
-    /*
-    template<typename T>
-    struct TouchCallBack {
-        typedef void (T::* type)();
-    };*/
-
     unsigned timeout;
     float counter; // count elapsed time(ms) since init
     float _ratio;  // time VS shaft width

@@ -53,11 +53,11 @@
 		<Unit filename="include/MatrixElement.h" />
 		<Unit filename="include/Ruler.h" />
 		<Unit filename="include/SoundManager.h" />
-		<Unit filename="include/colours/BlackColour.h" />
 		<Unit filename="include/colours/BlueColour.h" />
 		<Unit filename="include/colours/Colour.h" />
 		<Unit filename="include/colours/GreenColour.h" />
 		<Unit filename="include/colours/GreyColour.h" />
+		<Unit filename="include/colours/PurpleColour.h" />
 		<Unit filename="include/colours/RedColour.h" />
 		<Unit filename="include/colours/YellowColour.h" />
 		<Unit filename="include/graphics/Button.h" />

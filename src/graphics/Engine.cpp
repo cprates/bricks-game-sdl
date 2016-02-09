@@ -53,7 +53,6 @@ bool Engine::init()
         return false;
     }
 
-    //renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
     renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_TARGETTEXTURE );
     if( renderer == NULL ) {
         cout << "!!! Cant create the Renderer!" << endl;

@@ -34,14 +34,6 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     Sprite* bg = new Sprite(BACKGROUND_FILE_PATH, 0, 0, engine->getScreenWidth(), engine->getScreenHeight(), renderer);
     attachChild(bg);
 
-    int width  = 470;
-    int height = 190;
-    gameOverSprite = new Sprite(GAMEOVER_FILE_PATH,
-        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
-
-    levelCompletedprite = new Sprite(LEVELCOMPLETED_FILE_PATH,
-        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
-
     levelTitle = new Text(level.getLevelTitle(), LEVEL_TITLE_COLOUR, 0, 0, LEVEL_TITLE_SIZE, engine, true);
     levelTitle->setPosition( engine->getScreenWidth()/2 - levelTitle->getRect()->w/2, LEVEL_TITLE_POSY );
     attachChild(levelTitle);
@@ -59,6 +51,16 @@ GameScene::GameScene(Level level, Engine* engine, SDL_Renderer* renderer) :
     truckSprite->addModifier(mx);
     truckSprite->setEnabled(false);
     truckRunning = true;
+    //
+    int width  = 470;
+    int height = 190;
+    gameOverSprite = new Sprite(GAMEOVER_FILE_PATH,
+        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
+    gameOverSprite->setVisible(false);
+    attachChild(gameOverSprite);
+
+    levelCompletedprite = new Sprite(LEVELCOMPLETED_FILE_PATH,
+        engine->getScreenWidth()/2 - width/2, engine->getScreenHeight()/2 - height/2, width, height, renderer);
 
     initTimeBar();
     initScoreBar();
@@ -158,17 +160,19 @@ void GameScene::setButtons() {
     nextLevelOnGOButton = new Button<DummyData, GameScene>
         ("resources/restartgo_button.png", 400, 430, 100, 100, dm, this, renderer);
     nextLevelOnGOButton->setClickCallback(&GameScene::buttonResetCallback);
+    nextLevelOnGOButton->setVisible(false);
+    attachChild(nextLevelOnGOButton);
 
     // sound
     DummyData dd;
-    muteButton = new Button<DummyData, GameScene>("resources/mute.png", 0, 5, 25, 25, dd, this, renderer);
-    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 0);
+    muteButton = new Button<DummyData, GameScene>("resources/mute.png", 0, 0, 25, 25, dd, this, renderer);
+    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 5);
     muteButton->setClickCallback(&GameScene::onPlayMusicCallback);
     muteButton->setVisible(false);
     attachChild(muteButton);
 
-    playMusicButton = new Button<DummyData, GameScene>("resources/nomute.png", 0, 5, 25, 25, dd, this, renderer);
-    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 0);
+    playMusicButton = new Button<DummyData, GameScene>("resources/nomute.png", 0, 0, 25, 25, dd, this, renderer);
+    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 5);
     playMusicButton->setClickCallback(&GameScene::onMuteCallback);
     attachChild(playMusicButton);
 }
@@ -188,9 +192,6 @@ void GameScene::gridClickEventCallback(int x, int y) {
         vector<MatrixElement*> adjacentTwins;
         logicMatrix.getAdjacentTwins(x, y, &adjacentTwins);
         if(adjacentTwins.size() > 1) {
-            // Estas duas linhas(logicMatrix.reallocElements() e graphicMatrix.build()) TEM DE FICAR
-            // SEMPRE SEGUIDAS PORQUE O build() ACTUALIZA O Grid.matrixWidth. Se houver um realoc e este não for actualizado
-            // as coordenadas dos clicks vao ficar desalinhadas
             int score = logicMatrix.reallocElements();
             ruler.incrementScore(score);
             graphicMatrix.build(&logicMatrix);
@@ -229,8 +230,10 @@ void GameScene::reset() {
     ruler.reset();
     genLogicMatrix(&level);
     graphicMatrix.build(&logicMatrix);
-    detatchEntity(gameOverSprite);
-    detatchEntity(nextLevelOnGOButton);
+    //detatchEntity(gameOverSprite);
+    gameOverSprite->setVisible(false);
+    //detatchEntity(nextLevelOnGOButton);
+    nextLevelOnGOButton->setVisible(false);
     detatchEntity(levelCompletedprite);
     detatchEntity(nextLevelButton);
     paused = true;
@@ -267,10 +270,11 @@ void GameScene::onGameOver() {
     timerBar->pause();
     gameOver = true;
     gameOverSprite->addModifier(new AlphaModifier(0, 255, 0.3));
-    attachChild(gameOverSprite);
+    //attachChild(gameOverSprite);
+    gameOverSprite->setVisible(true);
     nextLevelOnGOButton->addModifier(new AlphaModifier(0, 255, 0.3));
-    attachChild(nextLevelOnGOButton);
-
+    //attachChild(nextLevelOnGOButton);
+    nextLevelOnGOButton->setVisible(true);
     SoundManager::getInstance()->playGameOver();
 }
 
@@ -289,17 +293,17 @@ void GameScene::onLevelCompleted() {
 }
 
 void GameScene::buttonResetCallback(Entity* button, DummyData* dm) {
-    if(!truckRunning)
+    if(!truckRunning) {
         changeLevel(level);
-
-    SoundManager::getInstance()->playClick();
+        SoundManager::getInstance()->playClick();
+    }
 }
 
 void GameScene::buttonHomeCallback(Entity* button, DummyData* dm) {
-    if(!truckRunning)
+    if(!truckRunning) {
         SceneManager::getInstance()->loadLoadingScene(MAINMENU_SCENE);
-
-    SoundManager::getInstance()->playClick();
+        SoundManager::getInstance()->playClick();
+    }
 }
 
 void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
@@ -311,7 +315,6 @@ void GameScene::buttonPushGridCallback(Entity* button, DummyData* dm) {
     if(gameOver) {
         timerBar->pause();
     }
-
 }
 
 void GameScene::buttonPauseCallback(Entity* button, DummyData* dm) {

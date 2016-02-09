@@ -6,7 +6,7 @@ const Colour MatrixCol::coloursSeed[] = {
     BlueColour(),
     YellowColour(),
     GreyColour(),
-    BlackColour()
+    PurpleColour()
     };
 const int MatrixCol::coloursSeedSize = 6;
 

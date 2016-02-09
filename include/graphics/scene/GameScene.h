@@ -24,13 +24,13 @@ class GameScene : public Scene
         static const short LEVEL_TITLE_SIZE = 30;
         static const int LEVEL_TITLE_POSY = 70;
         //
-        static const short BLOCK_WIDTH    = 40;   // pixels
-        static const short BLOCK_HEIGHT   = 40;   // pixels
-        static const short GRID_WIDTH     = 15;   // max n blocks
-        static const short GRID_HEIGHT    = 9;    // max n blocks
-        static const unsigned GRID_X_POS  = 100;  // pixels
-        static const unsigned GRID_START_X_POS  = -500;  // pixels
-        static const unsigned GRID_Y_POS  = 160;  // pixels
+        static const short BLOCK_WIDTH          = 40;   // pixels
+        static const short BLOCK_HEIGHT         = 40;   // pixels
+        static const short GRID_WIDTH           = 15;   // max n blocks
+        static const short GRID_HEIGHT          = 9;    // max n blocks
+        static const unsigned GRID_X_POS        = 100;  // pixels
+        static const unsigned GRID_START_X_POS  = -500; // pixels
+        static const unsigned GRID_Y_POS        = 160;  // pixels
 
         GameScene(Level level, Engine* engine, SDL_Renderer* renderer);
         virtual ~GameScene();

@@ -1,8 +1,6 @@
 #include "SoundManager.h"
 #include <stdexcept>
 
-#include <iostream>
-using namespace std;
 
 SoundManager* SoundManager::instance = NULL;
 const std::string SoundManager::MUSIC_FILE_PATH = "resources/sound/music.ogg";
@@ -79,19 +77,23 @@ void SoundManager::resumeMusic() {
 }
 
 void SoundManager::playClick() {
-    Mix_PlayChannel( -1, click, 0 );
+    if(!onMute)
+        Mix_PlayChannel( -1, click, 0 );
 }
 
 void SoundManager::playCrush() {
-    Mix_PlayChannel( -1, crush, 0 );
+    if(!onMute)
+        Mix_PlayChannel( -1, crush, 0 );
 }
 
 void SoundManager::playGameOver() {
-    Mix_PlayChannel( -1, gameOver, 0 );
+    if(!onMute)
+        Mix_PlayChannel( -1, gameOver, 0 );
 }
 
 void SoundManager::playLevelCompleted() {
-    Mix_PlayChannel( -1, levelCompleted, 0 );
+    if(!onMute)
+        Mix_PlayChannel( -1, levelCompleted, 0 );
 }
 
 void SoundManager::setMute(bool onMute) {

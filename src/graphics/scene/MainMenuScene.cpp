@@ -17,19 +17,19 @@ MainMenuScene::MainMenuScene(int width, int height, Engine* engine) :
 
     Level* level = LevelManager::getInstance()->getLevel(1);
     Button<Level, MainMenuScene>* firstLevelButton = new Button<Level, MainMenuScene>
-        ("resources/firstLevelButton.png", 250, 500, 70, 70, *level, this, renderer, true);
+        ("resources/firstLevelButton.png", 220, 520, 55, 70, *level, this, renderer, true);
     firstLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(firstLevelButton);
 
     level = LevelManager::getInstance()->getLevel(2);
     Button<Level, MainMenuScene>* secondLevelButton = new Button<Level, MainMenuScene>
-        ("resources/secondLevelButton.png", 690, 250, 70, 70, *level, this, renderer, true);
+        ("resources/secondLevelButton.png", 650, 250, 55, 70, *level, this, renderer, true);
     secondLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(secondLevelButton);
 
     level = LevelManager::getInstance()->getLevel(3);
     Button<Level, MainMenuScene>* thirdLevelButton = new Button<Level, MainMenuScene>
-        ("resources/thirdLevelButton.png", 515, 20, 70, 70, *level, this, renderer, true);
+        ("resources/thirdLevelButton.png", 515, 20, 55, 70, *level, this, renderer, true);
     thirdLevelButton->setClickCallback(&MainMenuScene::buttonClickCallback);
     attachChild(thirdLevelButton);
 
@@ -37,15 +37,15 @@ MainMenuScene::MainMenuScene(int width, int height, Engine* engine) :
     // sound
     MainMenuSceneDummyData dd;
     muteButton = new Button<MainMenuSceneDummyData, MainMenuScene>
-        ("resources/mute.png", 0, 5, 25, 25, dd, this, renderer);
-    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 0);
+        ("resources/mute.png", 0, 0, 25, 25, dd, this, renderer);
+    muteButton->setPosition(engine->getScreenWidth() - muteButton->getRect()->w - 5, 5);
     muteButton->setClickCallback(&MainMenuScene::onPlayMusicCallback);
     muteButton->setVisible(false);
     attachChild(muteButton);
 
     playMusicButton = new Button<MainMenuSceneDummyData, MainMenuScene>
-        ("resources/nomute.png", 0, 5, 25, 25, dd, this, renderer);
-    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 0);
+        ("resources/nomute.png", 0, 0, 25, 25, dd, this, renderer);
+    playMusicButton->setPosition(engine->getScreenWidth() - playMusicButton->getRect()->w - 5, 5);
     playMusicButton->setClickCallback(&MainMenuScene::onMuteCallback);
     attachChild(playMusicButton);
 

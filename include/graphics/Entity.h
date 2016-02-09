@@ -43,7 +43,7 @@ class Entity
         bool visible;
         // An Entity is wild when only the Scene have a reference to it
         bool wild;
-        bool enabled; // ignor events link clicks when == false
+        bool enabled; // ignor events like clicks when == false
         SDL_Rect rect;
         SDL_Rect originalRect;
         SDL_Renderer* entityRenderer;

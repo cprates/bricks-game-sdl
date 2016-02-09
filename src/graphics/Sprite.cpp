@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include <stdexcept>
 
 Sprite::Sprite(const string imgPath, int x, int y, int width, int height, SDL_Renderer* renderer, bool wild) :
     Entity::Entity(x, y, width, height, renderer),
@@ -25,17 +26,13 @@ void Sprite::onDraw(SDL_Renderer* renderer) {
 bool Sprite::create(const string imgPath, SDL_Renderer* renderer) {
 	SDL_Surface* imgSurface = IMG_Load(imgPath.c_str());
 	if(imgSurface == NULL){
-        cout << "!!! Can't load texture: " << imgPath << endl;
-        cout << "!!! Error: " << IMG_GetError() << endl;
-		return false;
+        throw std::runtime_error("\n!!! Can't load texture: " + imgPath + "\n!!! Error: " + IMG_GetError());
 	}
     SDL_SetColorKey( imgSurface, SDL_TRUE, SDL_MapRGB( imgSurface->format, 0x00, 0xFF, 0xFF ) );
 
     this->texture = SDL_CreateTextureFromSurface( renderer, imgSurface );
     if(this->texture == NULL){
-        cout << "!!! Can't create texture: " << imgPath << endl;
-        cout << "!!! Error: " << IMG_GetError() << endl;
-        return false;
+        throw std::runtime_error("\n!!! Can't create texture: " + imgPath + "\n!!! Error: " + IMG_GetError());
     }
 
     // Clean...

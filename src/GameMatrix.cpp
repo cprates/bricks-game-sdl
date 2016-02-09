@@ -35,8 +35,6 @@ MatrixElement* GameMatrix::getElement(int col, int row) {
 }
 
 void GameMatrix::getAdjacentTwins(int sourfaceX, int sourfaceY, vector<MatrixElement*>* adjacentTwins) {
-    //TODO: internamente traduz as coordenadas do click para o [x][y] do quadrado da matriz(a matriz precisa saber onde está a ser escrita e o tamanho de cada quadrado)
-    //TODO: confirmar se os indices são validos. Invalidos é maiores que as colunas por exemplo. Rebenta com a aplicação
     int col = sourfaceX;
     int row = sourfaceY;
     Colour* c = this->matrix[col]->getElement(row)->getColour();
